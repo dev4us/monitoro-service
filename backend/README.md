@@ -19,7 +19,7 @@ It is a service that keeps an eye on your service for safety.
 - [ ] GetProject
 - [ ] CreateProject
 - [ ] ModifyProject
-- [ ] RemoveProject
+- [ ] RemoveProject (with Message, Tag)
 - [ ] InviteUser
 - [ ] AddParticipants
 
@@ -28,11 +28,15 @@ It is a service that keeps an eye on your service for safety.
 - [ ] GetMessages
 - [ ] SendMessage
 - [ ] SendMessageSubscription
+- [ ] DeleteMessages (use id, use Tag)
 
 ### Tag
 
 - [ ] GetTags
 - [ ] AddTag
+- [ ] ModifyTag
+- [ ] ModifyTagSubscription
+- [ ] DeleteTag ( with Messages )
 
 ### ETC
 
