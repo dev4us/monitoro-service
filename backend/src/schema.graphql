@@ -1,0 +1,42 @@
+query get {
+  User
+}
+
+type Message {
+  id: Int!
+  level: String
+  contents: String!
+  fileName: String
+  project: Project
+  tags: [Tag]
+  createdAt: String!
+}
+
+type Project {
+  id: Int!
+  name: String!
+  participants: [User]
+  admin: User
+  messages: [Message]
+  tags: [Tag]
+  createdAt: String!
+  updatedAt: String
+}
+
+type Tag {
+  id: Int!
+  name: String!
+  messages: [Message]!
+  projects: Project
+  createdAt: String!
+  updatedAt: String
+}
+
+type User {
+  id: Int!
+  userId: String!
+  innerProjects: [Project]
+  manages: [Project]
+  createdAt: String!
+  updatedAt: String
+}

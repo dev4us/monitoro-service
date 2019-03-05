@@ -22,6 +22,9 @@ class Tag extends BaseEntity {
   @ManyToMany(type => Message, message => message.tags)
   messages: Message[];
 
+  @Column({ nullable: true })
+  color: string;
+
   @ManyToOne(type => Project, project => project.tags)
   projects: Project;
 
