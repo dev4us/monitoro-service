@@ -1,0 +1,10 @@
+type Project {
+  id: Int!
+  name: String!
+  participants: [User]
+  admin: User
+  messages: [Message]
+  tags: [Tag]
+  createdAt: String!
+  updatedAt: String
+}

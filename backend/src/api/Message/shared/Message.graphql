@@ -1,0 +1,9 @@
+type Message {
+  id: Int!
+  level: String
+  contents: String!
+  fileName: String
+  project: Project
+  tags: [Tag]
+  createdAt: String!
+}

@@ -1,0 +1,8 @@
+type Tag {
+  id: Int!
+  name: String!
+  messages: [Message]!
+  projects: Project
+  createdAt: String!
+  updatedAt: String
+}

@@ -1,0 +1,8 @@
+type User {
+  id: Int!
+  userId: String!
+  innerProjects: [Project]
+  manages: [Project]
+  createdAt: String!
+  updatedAt: String
+}
