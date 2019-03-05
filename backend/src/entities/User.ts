@@ -17,7 +17,10 @@ class User extends BaseEntity {
   @PrimaryGeneratedColumn() id: number;
 
   @Column({ nullable: false })
-  userId: string;
+  userEmail: string;
+
+  @Column({ nullable: false })
+  userName: string;
 
   @ManyToMany(type => Project, project => project.participants)
   @JoinTable()

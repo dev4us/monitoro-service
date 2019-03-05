@@ -10,14 +10,13 @@ It is a service that keeps an eye on your service for safety.
 
 ### User
 
-- [ ] SignIn
-- [ ] SignUp
+- [x] SignIn
 
 ### Project
 
 - [ ] GetProjects
 - [ ] GetProject
-- [ ] CreateProject
+- [x] CreateProject
 - [ ] ModifyProject
 - [ ] RemoveProject (with Message, Tag)
 - [ ] InviteUser

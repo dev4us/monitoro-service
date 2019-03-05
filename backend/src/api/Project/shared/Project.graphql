@@ -1,7 +1,7 @@
 type Project {
   id: Int!
   name: String!
-  participants: [User]
+  participants: [User]!
   admin: User
   messages: [Message]
   tags: [Tag]

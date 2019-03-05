@@ -1,8 +1,13 @@
 type User {
   id: Int!
-  userId: String!
+  userName: String!
+  userMail: String!
   innerProjects: [Project]
   manages: [Project]
   createdAt: String!
   updatedAt: String
+}
+
+type Query {
+  User: String!
 }

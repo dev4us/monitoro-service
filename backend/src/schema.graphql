@@ -8,10 +8,20 @@ type Message {
   createdAt: String!
 }
 
+type CreateProjectResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  CreateProject(projectName: String!): CreateProjectResponse!
+  SignIn(userEmail: String!, userName: String!): SignInResponse!
+}
+
 type Project {
   id: Int!
   name: String!
-  participants: [User]
+  participants: [User]!
   admin: User
   messages: [Message]
   tags: [Tag]
@@ -31,9 +41,20 @@ type Tag {
 
 type User {
   id: Int!
-  userId: String!
+  userName: String!
+  userMail: String!
   innerProjects: [Project]
   manages: [Project]
   createdAt: String!
   updatedAt: String
+}
+
+type Query {
+  User: String!
+}
+
+type SignInResponse {
+  ok: Boolean!
+  error: String
+  token: String
 }

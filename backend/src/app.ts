@@ -11,7 +11,7 @@ class App {
   public pubSub: any;
   constructor() {
     this.pubSub = new PubSub();
-    this.pubSub.ee.setMaxListener(99);
+    this.pubSub.ee.setMaxListeners(99);
     this.app = new GraphQLServer({
       schema,
       context: req => {
@@ -39,7 +39,7 @@ class App {
     next: NextFunction
   ): Promise<void> => {
     const token = req.get("X-JWT");
-    console.log(token);
+
     if (token) {
       const user = await decodeJWT(token);
       if (user) {
