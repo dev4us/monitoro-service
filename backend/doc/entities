@@ -1,0 +1,35 @@
+User
+	id
+	userId
+	manages [Projects] (OneToMany 2)
+  innerProjects [Projects] (ManyToMany 1)
+  createdAt
+  updatedAt
+    
+Project
+	id
+  name
+	messages [Message] (OneToMany 3)
+  admin (ManyToOne 2)
+	participant [member] (ManyToMany 1)
+  Tags [Tag] (oneToMany 4)
+  createdAt
+  updatedAt
+    
+Message
+  id
+  level
+  contents
+  fileName
+  Project (manyToOne 3)
+  tags [Tags] (OneToMany 5)
+  createdAt
+
+Tags
+	id
+  name
+  tag (ManyToOne 5)
+  Project (ManyToOne 4)
+  offerNotification
+  createDate
+  updateDate
