@@ -22,6 +22,7 @@ It is a service that keeps an eye on your service for safety.
 - [ ] RemoveProject (with Message, Tag)
 - [ ] InviteUser
 - [ ] AddParticipants
+- [ ] GetParticipants
 
 ### Message
 
