@@ -1,3 +1,15 @@
+type GetMessagesResponse {
+  ok: Boolean!
+  error: String
+  messages: [Message]
+}
+
+type Query {
+  GetMessages(apiKey: String!): GetMessagesResponse!
+  GetProjects: GetProjectsResponse!
+  User: String!
+}
+
 type SendMessageResponse {
   ok: Boolean!
   error: String
@@ -19,6 +31,7 @@ type Message {
   contents: String!
   fileName: String
   project: Project
+  projectId: Int
   tags: [Tag]
   createdAt: String!
 }
@@ -32,11 +45,6 @@ type GetProjectsResponse {
   ok: Boolean!
   error: String
   projects: [Project]
-}
-
-type Query {
-  GetProjects: GetProjectsResponse!
-  User: String!
 }
 
 type Project {
@@ -54,7 +62,7 @@ type Project {
 type Tag {
   id: Int!
   name: String!
-  messages: [Message]!
+  messages: [Message]
   color: String
   project: Project!
   createdAt: String!
@@ -64,7 +72,7 @@ type Tag {
 type User {
   id: Int!
   userName: String!
-  userMail: String!
+  userEmail: String!
   innerProjects: [Project]
   manages: [Project]
   createdAt: String!

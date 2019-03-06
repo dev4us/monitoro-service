@@ -1,7 +1,6 @@
 type Tag {
   id: Int!
   name: String!
-  messages: [Message]!
   color: String
   project: Project!
   createdAt: String!

@@ -4,6 +4,7 @@ type Message {
   contents: String!
   fileName: String
   project: Project
+  projectId: Int
   tags: [Tag]
   createdAt: String!
 }

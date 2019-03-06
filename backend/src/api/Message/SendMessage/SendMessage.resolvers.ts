@@ -31,15 +31,11 @@ const resolvers: Resolvers = {
           };
         }
 
-        const newMessage = await Message.create({
-          ...notNull,
-          project
-        }).save();
-
         if (tags) {
-          // exist check for tags
+          let afterTag = [{}];
+
           Promise.all(
-            tags.map(async attachTags => {
+            tags.map(async (attachTags, index, array) => {
               const existTag = await getRepository(Tag)
                 .createQueryBuilder("tag")
                 .innerJoinAndSelect(
@@ -51,24 +47,27 @@ const resolvers: Resolvers = {
                 .where({ name: attachTags.attachTag })
                 .getOne();
 
-              if (existTag === undefined || !existTag) {
-                console.log("newMessage => ", newMessage);
-
+              if (existTag) {
+                afterTag.push(existTag);
+              } else {
                 const newTag = await Tag.create({
                   name: attachTags.attachTag,
-                  messages: [newMessage],
                   project
                 }).save();
 
-                newMessage.tags.push(newTag);
-              } else {
-                newMessage.tags.push(existTag);
+                afterTag.push(newTag);
+              }
+
+              if (index === array.length - 1) {
+                await Message.create({
+                  ...notNull,
+                  tags: afterTag,
+                  project
+                }).save();
               }
             })
           );
         }
-        newMessage.save();
-
         return {
           ok: true,
           error: null

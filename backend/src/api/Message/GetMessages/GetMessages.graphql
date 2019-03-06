@@ -1,0 +1,9 @@
+type GetMessagesResponse {
+  ok: Boolean!
+  error: String
+  messages: [Message]
+}
+
+type Query {
+  GetMessages(apiKey: String!): GetMessagesResponse!
+}

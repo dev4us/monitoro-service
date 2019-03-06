@@ -4,8 +4,8 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   ManyToOne,
-  ManyToMany,
   Column,
+  ManyToMany,
   JoinTable
 } from "typeorm";
 
@@ -27,6 +27,9 @@ class Message extends BaseEntity {
 
   @ManyToOne(type => Project, project => project.messages)
   project: Project;
+
+  @Column()
+  projectId: number;
 
   @ManyToMany(type => Tag, tag => tag.messages)
   @JoinTable()

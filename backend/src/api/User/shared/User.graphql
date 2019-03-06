@@ -1,7 +1,7 @@
 type User {
   id: Int!
   userName: String!
-  userMail: String!
+  userEmail: String!
   innerProjects: [Project]
   manages: [Project]
   createdAt: String!
