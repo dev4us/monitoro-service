@@ -1,3 +1,18 @@
+type SendMessageResponse {
+  ok: Boolean!
+  error: String
+}
+
+input Tags {
+  tag: String!
+}
+
+type Mutation {
+  SendMessage(level: String!, contents: String!, fileName: String, projectId: Int!, tags: [Tags]): SendMessageResponse!
+  CreateProject(projectName: String!): CreateProjectResponse!
+  SignIn(userEmail: String!, userName: String!): SignInResponse!
+}
+
 type Message {
   id: Int!
   level: String
@@ -11,11 +26,6 @@ type Message {
 type CreateProjectResponse {
   ok: Boolean!
   error: String
-}
-
-type Mutation {
-  CreateProject(projectName: String!): CreateProjectResponse!
-  SignIn(userEmail: String!, userName: String!): SignInResponse!
 }
 
 type GetProjectsResponse {
@@ -36,6 +46,7 @@ type Project {
   admin: User
   messages: [Message]
   tags: [Tag]
+  apiKey: String!
   createdAt: String!
   updatedAt: String
 }
