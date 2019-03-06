@@ -8,8 +8,11 @@ import {
   ManyToOne,
   ManyToMany,
   Column,
-  JoinTable
+  JoinTable,
+  BeforeInsert
 } from "typeorm";
+
+import hat from "hat";
 
 import User from "./User";
 import Message from "./Message";
@@ -35,8 +38,16 @@ class Project extends BaseEntity {
   @OneToMany(type => Tag, tag => tag.projects)
   tags: Tag[];
 
+  @Column({ nullable: false })
+  apiKey: string;
+
   @CreateDateColumn() createdAt: string;
   @UpdateDateColumn() updatedAt: string;
+
+  @BeforeInsert()
+  async GenerateAPIKey(): Promise<void> {
+    this.apiKey = hat();
+  }
 }
 
 export default Project;

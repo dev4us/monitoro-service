@@ -5,6 +5,7 @@ type Project {
   admin: User
   messages: [Message]
   tags: [Tag]
+  apiKey: String!
   createdAt: String!
   updatedAt: String
 }
