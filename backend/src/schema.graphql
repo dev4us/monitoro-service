@@ -18,6 +18,17 @@ type Mutation {
   SignIn(userEmail: String!, userName: String!): SignInResponse!
 }
 
+type GetProjectsResponse {
+  ok: Boolean!
+  error: String
+  projects: [Project]
+}
+
+type Query {
+  GetProjects: GetProjectsResponse!
+  User: String!
+}
+
 type Project {
   id: Int!
   name: String!
@@ -47,10 +58,6 @@ type User {
   manages: [Project]
   createdAt: String!
   updatedAt: String
-}
-
-type Query {
-  User: String!
 }
 
 type SignInResponse {

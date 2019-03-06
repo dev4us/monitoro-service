@@ -1,0 +1,9 @@
+type GetProjectsResponse {
+  ok: Boolean!
+  error: String
+  projects: [Project]
+}
+
+type Query {
+  GetProjects: GetProjectsResponse!
+}
