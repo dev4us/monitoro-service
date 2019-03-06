@@ -5,7 +5,8 @@ import {
   CreateDateColumn,
   ManyToOne,
   ManyToMany,
-  Column
+  Column,
+  JoinTable
 } from "typeorm";
 
 import Project from "./Project";
@@ -28,6 +29,7 @@ class Message extends BaseEntity {
   project: Project;
 
   @ManyToMany(type => Tag, tag => tag.messages)
+  @JoinTable()
   tags: Tag[];
 
   @CreateDateColumn() createdAt: string;

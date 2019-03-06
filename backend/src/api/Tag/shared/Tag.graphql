@@ -3,7 +3,7 @@ type Tag {
   name: String!
   messages: [Message]!
   color: String
-  projects: Project
+  project: Project!
   createdAt: String!
   updatedAt: String
 }

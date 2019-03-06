@@ -3,12 +3,12 @@ type SendMessageResponse {
   error: String
 }
 
-input Tags {
-  tag: String!
+input attachTags {
+  attachTag: String!
 }
 
 type Mutation {
-  SendMessage(level: String!, contents: String!, fileName: String, projectId: Int!, tags: [Tags]): SendMessageResponse!
+  SendMessage(level: String!, contents: String!, fileName: String, apiKey: String!, tags: [attachTags]): SendMessageResponse!
   CreateProject(projectName: String!): CreateProjectResponse!
   SignIn(userEmail: String!, userName: String!): SignInResponse!
 }
@@ -56,7 +56,7 @@ type Tag {
   name: String!
   messages: [Message]!
   color: String
-  projects: Project
+  project: Project!
   createdAt: String!
   updatedAt: String
 }

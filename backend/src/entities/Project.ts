@@ -35,7 +35,7 @@ class Project extends BaseEntity {
   @OneToMany(type => Message, message => message.project)
   messages: Message[];
 
-  @OneToMany(type => Tag, tag => tag.projects)
+  @OneToMany(type => Tag, tag => tag.project)
   tags: Tag[];
 
   @Column({ nullable: false })

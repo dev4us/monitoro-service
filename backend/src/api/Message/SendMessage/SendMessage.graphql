@@ -1,0 +1,18 @@
+type SendMessageResponse {
+  ok: Boolean!
+  error: String
+}
+
+input attachTags {
+  attachTag: String!
+}
+
+type Mutation {
+  SendMessage(
+    level: String!
+    contents: String!
+    fileName: String
+    apiKey: String!
+    tags: [attachTags]
+  ): SendMessageResponse!
+}

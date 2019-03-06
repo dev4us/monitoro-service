@@ -14,8 +14,7 @@ It is a service that keeps an eye on your service for safety.
 
 ### Project
 
-- [ ] GetProjects
-- [ ] GetProject
+- [x] GetProjects
 - [x] CreateProject
 - [ ] ModifyProject
 - [ ] RemoveProject (with Message, Tag)
