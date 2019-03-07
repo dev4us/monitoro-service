@@ -1197,6 +1197,14 @@ apollo-link-dedup@^1.0.0:
     apollo-link "^1.2.9"
     tslib "^1.9.3"
 
+apollo-link-error@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/apollo-link-error/-/apollo-link-error-1.1.8.tgz#3a957b22b843cf6c307d516709cdc42371c9aafe"
+  dependencies:
+    apollo-link "^1.2.9"
+    apollo-link-http-common "^0.2.11"
+    tslib "^1.9.3"
+
 apollo-link-http-common@^0.2.11:
   version "0.2.11"
   resolved "https://registry.yarnpkg.com/apollo-link-http-common/-/apollo-link-http-common-0.2.11.tgz#d4e494ed1e45ea0e0c0ed60f3df64541d0de682d"
@@ -1212,6 +1220,13 @@ apollo-link-http@^1.5.12:
     apollo-link "^1.2.9"
     apollo-link-http-common "^0.2.11"
     tslib "^1.9.3"
+
+apollo-link-state@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/apollo-link-state/-/apollo-link-state-0.4.2.tgz#ac00e9be9b0ca89eae0be6ba31fe904b80bbe2e8"
+  dependencies:
+    apollo-utilities "^1.0.8"
+    graphql-anywhere "^4.1.0-alpha.0"
 
 apollo-link-ws@^1.0.15:
   version "1.0.15"
@@ -1229,7 +1244,7 @@ apollo-link@^1.0.0, apollo-link@^1.2.9:
     tslib "^1.9.3"
     zen-observable-ts "^0.8.16"
 
-apollo-utilities@1.2.1, apollo-utilities@^1.2.1:
+apollo-utilities@1.2.1, apollo-utilities@^1.0.8, apollo-utilities@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.2.1.tgz#1c3a1ebf5607d7c8efe7636daaf58e7463b41b3c"
   dependencies:
@@ -3833,6 +3848,13 @@ globby@^6.1.0:
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "4.1.15"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.15.tgz#ffb703e1066e8a0eeaa4c8b80ba9253eeefbfb00"
+
+graphql-anywhere@^4.1.0-alpha.0:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/graphql-anywhere/-/graphql-anywhere-4.2.1.tgz#1f7c3a3d9004dbe81b1c553d7fd1ef2e16e14a85"
+  dependencies:
+    apollo-utilities "^1.2.1"
+    tslib "^1.9.3"
 
 graphql-tag@^2.10.1:
   version "2.10.1"
