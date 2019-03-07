@@ -7390,6 +7390,7 @@ react-router-dom@^4.3.1:
 react-router@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-4.3.1.tgz#aada4aef14c809cb2e686b05cee4742234506c4e"
+  integrity sha512-yrvL8AogDh2X42Dt9iknk4wF4V8bWREPirFfS9gLU1huk6qK41sg7Z/1S81jjTrGHxa3B8R3J6xIkDAA6CVarg==
   dependencies:
     history "^4.7.2"
     hoist-non-react-statics "^2.5.0"
@@ -8867,18 +8868,6 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
-
-use-force-update@^1.0.0:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/use-force-update/-/use-force-update-1.0.3.tgz#b4c6251d3b7fe2045a42c745091cd6e63653f430"
-  integrity sha512-9zlcBj7upjtz4Zdk5O3bTnHF8bfywjLpRelyzbHFFRHATVx+gGFWhEGHiGrzdLFa2zPy0FEA1ISrhLfXmmOxHA==
-
-use-react-router@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/use-react-router/-/use-react-router-1.0.3.tgz#a6c1dfb7888cd9e1b44cb6732c1a8d050632489f"
-  integrity sha512-f/Y+8Oc7iuBA8+XLlKPukUOeN7T803ZeDM24zSh+LRAEIC9yx1rKlYjoQcYFBiXHNY4gWCO7T3hoTQCghtmn2A==
-  dependencies:
-    use-force-update "^1.0.0"
 
 use@^3.1.0:
   version "3.1.1"

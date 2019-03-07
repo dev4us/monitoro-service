@@ -4,15 +4,17 @@ It is a service that keeps an eye on your service for safety.
 
 ## Functional
 
-- [ ] Init React & Apollo Project
-- [ ] Management Token on Apollo (Local)
-- [ ] Router
+- [x] Init React & Apollo Project
+- [x] Management Token on Apollo (Local)
+- [x] Init Router
+- [x] Landing to Screen (from Home to DashBoard)
 
 ## Screen
 
 - [ ] Home
-- [ ] Login
+- [x] Login
 - [ ] DashBoard
+- [ ] Create Projects
 
 ## DashBoard
 

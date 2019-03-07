@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Store } from "../GlobalState/store";
 
 import Home from "../Routes/Home";
-import DashBoard from "./DashBoard";
+import LandingScreen from "./DashBoard/LandingScreen";
 import CreateProjects from "./DashBoard/CreateProjects";
 
 const LoggedOutRoutes = () => (
@@ -19,7 +19,7 @@ const LoggedOutRoutes = () => (
 const LoggedInRoutes = () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/" exact component={DashBoard} />
+      <Route path="/" exact component={LandingScreen} />
       <Route path="/createProject" component={CreateProjects} />
       <Redirect from={"*"} to={"/"} />
     </Switch>

@@ -13,6 +13,8 @@ export const SIGN_IN_GOOGLE = gql`
 export const PARTICIPATE_PROJECTS_QUERY = gql`
   query {
     GetProjects {
+      ok
+      error
       projects {
         id
         name
