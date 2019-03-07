@@ -1,6 +1,12 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useContext } from "react";
+import { Store } from "../../GlobalState/store";
+
+import { useMutation } from "react-apollo-hooks";
 import { GoogleLogin } from "react-google-login";
+
+import { SIGN_IN_GOOGLE } from "../../queries";
+
+import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
@@ -36,24 +42,57 @@ const GoogleLoginButton = styled.button`
   }
 `;
 
-const Home = () => (
-  <Container>
-    <MiddleFrame>
-      <MainLogo src={require("../../Assets/images/monitoro_logo.jpg")} />
-      <GoogleLogin
-        clientId="640441314268-7dthvqpin5rrb6kithpurt4kf9mrd9fq.apps.googleusercontent.com"
-        render={renderProps => (
-          <GoogleLoginButton
-            onClick={renderProps.onClick}
-            normalBg={require("../../Assets/images/googleSignIn.png")}
-            hoverBg={require("../../Assets/images/googleSignIn_hover.png")}
-          />
-        )}
-        buttonText="Login"
-        onSuccess={() => console.log("success")}
-        onFailure={() => console.log("fail")}
-      />
-    </MiddleFrame>
-  </Container>
-);
+const Home = () => {
+  const { dispatch } = useContext(Store);
+  const signInMutation = useMutation(SIGN_IN_GOOGLE);
+
+  return (
+    <Container>
+      <MiddleFrame>
+        <MainLogo src={require("../../Assets/images/monitoro_logo.jpg")} />
+        <GoogleLogin
+          clientId="640441314268-7dthvqpin5rrb6kithpurt4kf9mrd9fq.apps.googleusercontent.com"
+          render={renderProps => (
+            <GoogleLoginButton
+              onClick={renderProps.onClick}
+              normalBg={require("../../Assets/images/googleSignIn.png")}
+              hoverBg={require("../../Assets/images/googleSignIn_hover.png")}
+            />
+          )}
+          buttonText="Login"
+          onSuccess={responseGoogle => {
+            const {
+              profileObj: { name, email }
+            } = responseGoogle;
+
+            signInMutation({
+              variables: { userEmail: email, userName: name }
+            }).then(
+              result => {
+                const {
+                  data: {
+                    SignIn: { ok, error, token }
+                  }
+                } = result;
+
+                if (ok === true) {
+                  localStorage.setItem("jwt", token);
+                  dispatch({ type: "LOGIN", payload: token });
+                } else {
+                  alert(error);
+                }
+              },
+              error => {
+                alert(`Login failed with Google Account`);
+              }
+            );
+          }}
+          onFailure={() => {
+            alert(`Login failed with Google Account`);
+          }}
+        />
+      </MiddleFrame>
+    </Container>
+  );
+};
 export default Home;
