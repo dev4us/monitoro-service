@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { GoogleLogin } from "react-google-login";
 
 const Container = styled.div`
   display: flex;
@@ -39,9 +40,18 @@ const Home = () => (
   <Container>
     <MiddleFrame>
       <MainLogo src={require("../../Assets/images/monitoro_logo.jpg")} />
-      <GoogleLoginButton
-        normalBg={require("../../Assets/images/googleSignIn.png")}
-        hoverBg={require("../../Assets/images/googleSignIn_hover.png")}
+      <GoogleLogin
+        clientId="640441314268-7dthvqpin5rrb6kithpurt4kf9mrd9fq.apps.googleusercontent.com"
+        render={renderProps => (
+          <GoogleLoginButton
+            onClick={renderProps.onClick}
+            normalBg={require("../../Assets/images/googleSignIn.png")}
+            hoverBg={require("../../Assets/images/googleSignIn_hover.png")}
+          />
+        )}
+        buttonText="Login"
+        onSuccess={() => console.log("success")}
+        onFailure={() => console.log("fail")}
       />
     </MiddleFrame>
   </Container>
