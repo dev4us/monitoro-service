@@ -25,6 +25,10 @@ type Mutation {
   SignIn(userEmail: String!, userName: String!): SignInResponse!
 }
 
+type Subscription {
+  SendMessageSubscription: Message
+}
+
 type Message {
   id: Int!
   level: String
@@ -62,7 +66,6 @@ type Project {
 type Tag {
   id: Int!
   name: String!
-  messages: [Message]
   color: String
   project: Project!
   createdAt: String!

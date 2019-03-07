@@ -24,15 +24,15 @@ It is a service that keeps an eye on your service for safety.
 
 ### Message
 
-- [ ] GetMessages
-- [ ] SendMessage
+- [x] GetMessages
+- [x] SendMessage
 - [ ] SendMessageSubscription
 - [ ] DeleteMessages (use id, use Tag)
 
 ### Tag
 
 - [ ] GetTags
-- [ ] AddTag
+- [x] AddTag
 - [ ] ModifyTag
 - [ ] ModifyTagSubscription
 - [ ] DeleteTag ( with Messages )

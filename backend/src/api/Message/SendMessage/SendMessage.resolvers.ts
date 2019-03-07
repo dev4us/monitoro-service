@@ -15,7 +15,7 @@ const resolvers: Resolvers = {
     SendMessage: async (
       _,
       args: SendMessageMutationArgs,
-      __
+      { pubSub }
     ): Promise<SendMessageResponse> => {
       const notNull = cleanNullArgs(args);
       const { apiKey, tags } = args;
@@ -32,7 +32,7 @@ const resolvers: Resolvers = {
         }
 
         if (tags) {
-          let afterTag = [{}];
+          let afterTag: Tag[] = [];
 
           Promise.all(
             tags.map(async (attachTags, index, array) => {
@@ -59,15 +59,29 @@ const resolvers: Resolvers = {
               }
 
               if (index === array.length - 1) {
-                await Message.create({
+                const newMessage = await Message.create({
                   ...notNull,
                   tags: afterTag,
                   project
                 }).save();
+
+                pubSub.publish("newMessage", {
+                  SendMessageSubscription: newMessage
+                });
               }
             })
           );
+        } else {
+          const newMessage = await Message.create({
+            ...notNull,
+            project
+          }).save();
+
+          pubSub.publish("newMessage", {
+            SendMessageSubscription: newMessage
+          });
         }
+
         return {
           ok: true,
           error: null
