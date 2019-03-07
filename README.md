@@ -1,4 +1,8 @@
-# # Monitoro
+# # MONITORO
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/19645646/53932425-dad6be00-40dc-11e9-8478-8063d3f22608.jpg" alt="monitoro_logo"/>
+</p>
 
 ## Intoduction 💬
 
