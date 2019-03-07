@@ -26,7 +26,7 @@ It is a service that keeps an eye on your service for safety.
 
 - [x] GetMessages
 - [x] SendMessage
-- [ ] SendMessageSubscription
+- [x] SendMessageSubscription
 - [ ] DeleteMessages (use id, use Tag)
 
 ### Tag
