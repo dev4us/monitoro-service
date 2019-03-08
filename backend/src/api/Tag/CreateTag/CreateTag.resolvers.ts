@@ -15,7 +15,7 @@ const resolvers: Resolvers = {
       async (
         _,
         args: CreateTagMutationArgs,
-        { req }
+        { req, pubSub }
       ): Promise<CreateTagResponse> => {
         const { projectId, name, color } = args;
         const { user } = req;
@@ -62,6 +62,10 @@ const resolvers: Resolvers = {
             project,
             color: color || undefined
           }).save();
+
+          pubSub.publish("newTag", {
+            CreateTagSubscription: newTag
+          });
 
           return {
             ok: true,
