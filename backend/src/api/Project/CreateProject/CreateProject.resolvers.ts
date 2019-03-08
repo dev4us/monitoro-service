@@ -31,23 +31,26 @@ const resolvers: Resolvers = {
           if (existProject) {
             return {
               ok: false,
-              error: "This project already exists"
+              error: "This project already exists",
+              project: null
             };
           } else {
-            await Project.create({
+            const newProject = await Project.create({
               name: projectName,
               participants: [user]
             }).save();
 
             return {
               ok: true,
-              error: null
+              error: null,
+              project: newProject
             };
           }
         } catch (error) {
           return {
             ok: false,
-            error: error.message
+            error: error.message,
+            project: null
           };
         }
       }

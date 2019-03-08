@@ -43,6 +43,7 @@ type Message {
 type CreateProjectResponse {
   ok: Boolean!
   error: String
+  project: Project
 }
 
 type GetProjectsResponse {
