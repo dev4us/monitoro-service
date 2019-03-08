@@ -15,32 +15,40 @@ const resolvers: Resolvers = {
         const { user } = req;
         const { projectId } = args;
 
-        const project = await getRepository(Project)
-          .createQueryBuilder("project")
-          .innerJoinAndSelect(
-            "project.participants",
-            "participants",
-            "participants.id = :userId",
-            { userId: user.id }
-          )
-          .where({ id: projectId })
-          .getOne();
+        try {
+          const project = await getRepository(Project)
+            .createQueryBuilder("project")
+            .innerJoinAndSelect(
+              "project.participants",
+              "participants",
+              "participants.id = :userId",
+              { userId: user.id }
+            )
+            .where({ id: projectId })
+            .getOne();
 
-        if (!project) {
+          if (!project) {
+            return {
+              ok: false,
+              error: "You Can't Access this project",
+              tags: null
+            };
+          }
+
+          const tags = await Tag.find({ projectId });
+
+          return {
+            ok: true,
+            error: null,
+            tags
+          };
+        } catch (error) {
           return {
             ok: false,
-            error: "You Can't Access this project",
+            error: error.message,
             tags: null
           };
         }
-
-        const tags = await Tag.find({ projectId });
-
-        return {
-          ok: true,
-          error: null,
-          tags
-        };
       }
     )
   }

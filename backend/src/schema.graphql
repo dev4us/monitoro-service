@@ -23,6 +23,7 @@ input attachTags {
 type Mutation {
   SendMessage(level: String!, contents: String!, fileName: String, apiKey: String!, tags: [attachTags]): SendMessageResponse!
   CreateProject(projectName: String!): CreateProjectResponse!
+  CreateTag(projectId: Int!, name: String!, color: String): CreateTagResponse!
   SignIn(userEmail: String!, userName: String!): SignInResponse!
 }
 
@@ -63,6 +64,12 @@ type Project {
   apiKey: String!
   createdAt: String!
   updatedAt: String
+}
+
+type CreateTagResponse {
+  ok: Boolean!
+  error: String
+  tag: Tag
 }
 
 type GetTagsResponse {

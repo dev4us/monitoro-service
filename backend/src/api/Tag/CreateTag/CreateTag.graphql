@@ -1,0 +1,9 @@
+type CreateTagResponse {
+  ok: Boolean!
+  error: String
+  tag: Tag
+}
+
+type Mutation {
+  CreateTag(projectId: Int!, name: String!, color: String): CreateTagResponse!
+}

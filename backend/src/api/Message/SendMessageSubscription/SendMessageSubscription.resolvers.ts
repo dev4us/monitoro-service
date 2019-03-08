@@ -25,7 +25,6 @@ const resolvers = {
               )
               .where({ id: projectId })
               .getOne();
-            console.log("project ===> ", project);
             if (project) {
               return projectId === project.id;
             } else {
