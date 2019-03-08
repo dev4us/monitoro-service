@@ -4,7 +4,6 @@ import { useMutation } from "react-apollo-hooks";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 
-import BabyBirdsPng from "../../../Assets/images/babybird.png";
 import { CREATE_NEW_PROJECT } from "../../../queries";
 
 const Container = styled.div`
@@ -76,15 +75,21 @@ const MainFrame = styled.div`
   width: 600px;
   height: 400px;
   border: 2px solid #ececec;
-  padding: 45px 15px 15px 15px;
+  padding: 15px 15px 15px 15px;
 
   h2 {
     color: #72c5f3;
     font-size: 1.6rem;
     font-weight: bold;
+    margin-bottom: 10px;
     @media (max-width: 850px) {
       font-size: 1rem;
     }
+  }
+
+  h3 {
+    color: #dcdcdc;
+    margin-bottom: 10px;
   }
 
   @media (max-width: 850px) {
@@ -92,13 +97,36 @@ const MainFrame = styled.div`
   }
 `;
 
-const BabyBirds = styled.img`
-  width: 150px;
+const TagBox = styled.div`
+  width: 80%;
+  height: 250px;
+  border-bottom: none;
+  border: 1px solid #dcdcdc;
+  overflow-y: scroll;
+  padding: 5px 5px 5px 5px;
+
+  @media (max-width: 850px) {
+    width: 100%;
+  }
+`;
+
+const TagItem = styled.div`
+  :not(:first-child) {
+    margin-right: 5px;
+  }
+  display: inline-flex;
+  padding: 5px 5px 5px 5px;
+  height: 25px;
+  border: 2px solid #dcdcdc;
+  margin-bottom: 3px;
+  border-radius: 5px;
+  line-height: 0.8;
 `;
 
 const InputBox = styled.div`
+  display: flex;
   width: 80%;
-  height: 70px;
+  height: 35px;
   margin-bottom: 15px;
 
   @media (max-width: 850px) {
@@ -115,12 +143,15 @@ const InputBox = styled.div`
       font-size: 0.8rem;
     }
   }
+
   input {
-    width: 100%;
+    width: 80%;
     height: 35px;
     padding-left: 15px;
     padding-right: 15px;
     border: 1px solid #dcdcdc;
+    border-top: none;
+
     border-radius: 2px;
     color: #6d6b6b;
 
@@ -132,8 +163,16 @@ const InputBox = styled.div`
       outline-color: rgb(77, 144, 254);
       outline-offset: -2px;
       outline-style: auto;
-      outline-width: 5px;
+      outline-width: 2px;
     }
+  }
+  button {
+    flex: 1;
+    height: 35px;
+    border: none;
+    color: white;
+    font-size: 0.4rem;
+    background: #ff8787;
   }
 `;
 
@@ -182,16 +221,60 @@ const SettingTags = ({ history, location }) => {
         </Step>
       </StepBox>
       <MainFrame>
-        <h2>Create New Project</h2>
-        <BabyBirds src={BabyBirdsPng} />
+        <h2>Let's Add Tags to Use </h2>
+        <h3>ex) Notice, Warning, danger..</h3>
+        <TagBox>
+          <TagItem>warasdfasdfasdf</TagItem>
+          <TagItem>adsfasdfadsf</TagItem>
+          <TagItem>adfasdf</TagItem>
+          <TagItem>adfasdfadf</TagItem>
+          <TagItem>warasdfasdf</TagItem>
+          <TagItem>adsfasdfadsf</TagItem>
+          <TagItem>adfasdf</TagItem>
+          <TagItem>adasdfadf</TagItem>
+          <TagItem>wzxcvarasdfasdfasdf</TagItem>
+          <TagItem>adsfacsdfadsf</TagItem>
+          <TagItem>fasdf</TagItem>
+          <TagItem>adfasdfadf</TagItem>
+          <TagItem>warasdfasdfasdf</TagItem>
+          <TagItem>adsfasxcvdfadsf</TagItem>
+          <TagItem>adfasdf</TagItem>
+          <TagItem>addf</TagItem>
+          <TagItem>wardfasdf</TagItem>
+          <TagItem>asf</TagItem>
+          <TagItem>adf</TagItem>
+          <TagItem>adfadf</TagItem>
+          <TagItem>wrasasdfasdf</TagItem>
+          <TagItem>adsfasdfadsf</TagItem>
+          <TagItem>adfasdf</TagItem>
+          <TagItem>adfasdfadf</TagItem>
+          <TagItem>warasdfasdfasdf</TagItem>
+          <TagItem>adsfasdfadsf</TagItem>
+          <TagItem>adfasdf</TagItem>
+          <TagItem>adfasdfadf</TagItem>
+          <TagItem>adfasdf</TagItem>
+          <TagItem>addf</TagItem>
+          <TagItem>wardfasdf</TagItem>
+          <TagItem>asf</TagItem>
+          <TagItem>adf</TagItem>
+          <TagItem>adfadf</TagItem>
+          <TagItem>wrasasdfasdf</TagItem>
+          <TagItem>adsfasdfadsf</TagItem>
+          <TagItem>adfasdf</TagItem>
+          <TagItem>adfasdfadf</TagItem>
+          <TagItem>warasdfasdfasdf</TagItem>
+          <TagItem>adsfasdfadsf</TagItem>
+          <TagItem>adfasdf</TagItem>
+          <TagItem>adfasdfadf</TagItem>
+        </TagBox>
         <InputBox>
-          <h3>{createProjectName}</h3>
           <input
             type="text"
-            placeholder="Required * "
+            placeholder={`Insert Tag Name for '${createProjectName}'`}
             value={projectName}
             onChange={event => setProjectName(event.target.value)}
           />
+          <button>Add</button>
         </InputBox>
         <SubmitBtn
           onClick={() => {
@@ -227,7 +310,7 @@ const SettingTags = ({ history, location }) => {
             );
           }}
         >
-          Create Project
+          Done! Let's Do this !
         </SubmitBtn>
       </MainFrame>
     </Container>

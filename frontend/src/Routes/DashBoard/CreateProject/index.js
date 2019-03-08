@@ -132,7 +132,7 @@ const InputBox = styled.div`
       outline-color: rgb(77, 144, 254);
       outline-offset: -2px;
       outline-style: auto;
-      outline-width: 5px;
+      outline-width: 2px;
     }
   }
 `;
