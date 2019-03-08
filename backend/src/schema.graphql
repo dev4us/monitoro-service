@@ -7,6 +7,7 @@ type GetMessagesResponse {
 type Query {
   GetMessages(apiKey: String!): GetMessagesResponse!
   GetProjects: GetProjectsResponse!
+  GetTags(projectId: Int!): GetTagsResponse!
   User: String!
 }
 
@@ -64,11 +65,18 @@ type Project {
   updatedAt: String
 }
 
+type GetTagsResponse {
+  ok: Boolean!
+  error: String
+  tags: [Tag]
+}
+
 type Tag {
   id: Int!
   name: String!
   color: String
   project: Project!
+  projectId: Int
   createdAt: String!
   updatedAt: String
 }

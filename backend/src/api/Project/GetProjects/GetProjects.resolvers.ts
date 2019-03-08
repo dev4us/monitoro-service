@@ -13,8 +13,8 @@ const resolvers: Resolvers = {
         .innerJoinAndSelect(
           "project.participants",
           "participants",
-          "participants.userName = :userName",
-          { userName: user.userName }
+          "participants.id = :userId",
+          { userId: user.id }
         )
         .getMany();
 

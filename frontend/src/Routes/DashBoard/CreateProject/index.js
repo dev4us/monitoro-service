@@ -203,7 +203,7 @@ const CreateProject = ({ history }) => {
                 } = result;
 
                 if (mutationSuccess === true) {
-                  toast.success("Create Proejct Success");
+                  toast.success("Create Project Success");
                   history.push({
                     pathname: "/settingTags",
                     state: { projectName }
