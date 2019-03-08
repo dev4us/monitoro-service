@@ -119,8 +119,8 @@ const Home = () => {
       <RightFrame>
         <MiddleFrame>
           <IntroText>
-            Let's Start with us. <br />
-            Please Login First
+            {`Let's Start with us.`} <br />
+            {`Please Login First`}
           </IntroText>
 
           <GoogleLogin

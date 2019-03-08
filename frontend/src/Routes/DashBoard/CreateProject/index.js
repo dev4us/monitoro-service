@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useMutation } from "react-apollo-hooks";
+
 import styled from "styled-components";
 import { toast } from "react-toastify";
 
-import BabyBirdsPng from "../../Assets/images/babybird.png";
+import BabyBirdsPng from "../../../Assets/images/babybird.png";
+import { CREATE_NEW_PROJECT } from "../../../queries";
 
 const Container = styled.div`
   display: flex;
@@ -154,8 +157,10 @@ const SubmitBtn = styled.button`
   }
 `;
 
-const CreateProjects = () => {
+const CreateProject = ({ history }) => {
   const [projectName, setProjectName] = useState("");
+
+  const createNewProjectMutation = useMutation(CREATE_NEW_PROJECT);
 
   return (
     <Container>
@@ -187,6 +192,30 @@ const CreateProjects = () => {
               toast.error("Please Insert your Project name");
               return false;
             }
+            createNewProjectMutation({
+              variables: { projectName }
+            }).then(
+              result => {
+                const {
+                  data: {
+                    CreateProject: { ok: mutationSuccess, error: mutationError }
+                  }
+                } = result;
+
+                if (mutationSuccess === true) {
+                  toast.success("Create Proejct Success");
+                  history.push({
+                    pathname: "/settingTags",
+                    state: { projectName }
+                  });
+                } else {
+                  toast.error(mutationError);
+                }
+              },
+              error => {
+                toast.error("Something Wrong, Please Try Again");
+              }
+            );
           }}
         >
           Create Project
@@ -196,4 +225,4 @@ const CreateProjects = () => {
   );
 };
 
-export default CreateProjects;
+export default CreateProject;
