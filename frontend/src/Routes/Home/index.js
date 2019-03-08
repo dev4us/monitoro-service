@@ -6,7 +6,7 @@ import { GoogleLogin } from "react-google-login";
 
 import { SIGN_IN_GOOGLE } from "../../queries";
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import GoogleLogoSvg from "../../Assets/images/googleLogo.svg";
 
 const Container = styled.div`
@@ -54,7 +54,7 @@ const IntroText = styled.p`
   text-shadow: 1px 1px 2px gray;
 
   @media (max-width: 850px) {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     white-space: unset;
   }
 `;
@@ -67,8 +67,9 @@ const MainLogo = styled.img`
   }
 `;
 
-const GoogleLoginButton = styled.button`
+const LoginButtonCSS = css`
   display: flex;
+  float: left;
   justify-content: space-between;
   align-items: center;
   width: 191px;
@@ -78,6 +79,7 @@ const GoogleLoginButton = styled.button`
   background: white;
   border-radius: 5px;
   text-align: left;
+  cursor: pointer;
 
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.1725);
   transition: all 0.3s;
@@ -86,15 +88,22 @@ const GoogleLoginButton = styled.button`
     box-shadow: unset;
     background: #ececec;
   }
-
-  cursor: pointer;
 `;
 
-const GoogleLogo = styled.img`
+const SNSLoginButton = styled.button`
+  ${LoginButtonCSS}
+  margin-right:5px;
+
+  @media (max-width: 850px) {
+    margin-bottom: 8px;
+  }
+`;
+
+const SNSLogo = styled.img`
   height: 23px;
 `;
 
-const GoogleLogoText = styled.a`
+const SNSLogoText = styled.a`
   color: #5c5c5c;
 `;
 
@@ -111,16 +120,16 @@ const Home = () => {
         <MiddleFrame>
           <IntroText>
             Let's Start with us. <br />
-            Please First Login
+            Please Login First
           </IntroText>
 
           <GoogleLogin
             clientId="640441314268-7dthvqpin5rrb6kithpurt4kf9mrd9fq.apps.googleusercontent.com"
             render={renderProps => (
-              <GoogleLoginButton onClick={renderProps.onClick}>
-                <GoogleLogo src={GoogleLogoSvg} />{" "}
-                <GoogleLogoText>Sign In With Google</GoogleLogoText>
-              </GoogleLoginButton>
+              <SNSLoginButton onClick={renderProps.onClick}>
+                <SNSLogo src={GoogleLogoSvg} />{" "}
+                <SNSLogoText>Sign In With Google</SNSLogoText>
+              </SNSLoginButton>
             )}
             buttonText="Login"
             onSuccess={responseGoogle => {

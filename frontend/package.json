@@ -19,6 +19,7 @@
     "react-dom": "^16.8.4",
     "react-google-login": "^5.0.2",
     "react-helmet": "^5.2.0",
+    "react-icons": "^3.5.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.8",
     "react-spinners": "^0.5.3",
