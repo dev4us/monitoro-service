@@ -16,6 +16,7 @@
     "react": "^16.8.4",
     "react-apollo": "^2.5.2",
     "react-apollo-hooks": "^0.4.3",
+    "react-color": "^2.17.0",
     "react-dom": "^16.8.4",
     "react-google-login": "^5.0.2",
     "react-helmet": "^5.2.0",

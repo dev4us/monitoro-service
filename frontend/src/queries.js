@@ -24,12 +24,39 @@ export const PARTICIPATE_PROJECTS_QUERY = gql`
   }
 `;
 
+export const GET_TAGS_QUERY = gql`
+  query getTags($projectId: Int!) {
+    GetTags(projectId: $projectId) {
+      tags {
+        name
+        color
+      }
+    }
+  }
+`;
+
 // Mutation
 export const CREATE_NEW_PROJECT = gql`
   mutation createNewProject($projectName: String!) {
     CreateProject(projectName: $projectName) {
       ok
       error
+      project {
+        id
+      }
+    }
+  }
+`;
+
+export const CREATE_TAG_MUTATION = gql`
+  mutation createTag($projectId: Int!, $name: String!, $color: String) {
+    CreateTag(projectId: $projectId, name: $name, color: $color) {
+      ok
+      error
+      tag {
+        name
+        color
+      }
     }
   }
 `;

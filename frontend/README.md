@@ -11,7 +11,7 @@ It is a service that keeps an eye on your service for safety.
 
 ## Screen
 
-- [ ] Home
+- [x] Home
 - [x] Login
 - [ ] DashBoard
 - [ ] Create Projects
@@ -25,5 +25,7 @@ It is a service that keeps an eye on your service for safety.
 
 ## Admin
 
-- [ ] Create Project
+- [x] Create Project
+- [x] Add to Tags (Mutation, refech)
+- [x] Add to Tags (ColorPicker)
 - [ ] Invite Member ( Soon 👀 )

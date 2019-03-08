@@ -198,7 +198,11 @@ const CreateProject = ({ history }) => {
               result => {
                 const {
                   data: {
-                    CreateProject: { ok: mutationSuccess, error: mutationError }
+                    CreateProject: {
+                      ok: mutationSuccess,
+                      error: mutationError,
+                      project: { id: newProjectId }
+                    }
                   }
                 } = result;
 
@@ -206,7 +210,7 @@ const CreateProject = ({ history }) => {
                   toast.success("Create Project Success");
                   history.push({
                     pathname: "/settingTags",
-                    state: { projectName }
+                    state: { projectName, newProjectId }
                   });
                 } else {
                   toast.error(mutationError);

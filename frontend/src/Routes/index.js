@@ -5,8 +5,8 @@ import { Store } from "../GlobalState/store";
 
 import Home from "../Routes/Home";
 import LandingScreen from "./DashBoard/LandingScreen";
-import CreateProjects from "./DashBoard/CreateProject";
-import SettingTags from "./DashBoard/SettingTags";
+import CreateProjects from "./DashBoard/CreateProject/CreateProject";
+import SettingTags from "./DashBoard/CreateProject/SettingTags";
 
 const LoggedOutRoutes = () => (
   <BrowserRouter>
