@@ -35,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
   .loaderFullWidth{
     display:flex;
     width:100%;
-    height:100vh;
+    height:calc(100vh - 100px);
     justify-content:center;
     align-items:center;
   }

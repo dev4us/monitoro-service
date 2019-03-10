@@ -46,7 +46,7 @@ const LeftMenu = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: #b7b3b3;
   width: 100px;
   height: 100%;
   font-size: 0.8rem;
@@ -60,7 +60,12 @@ const LeftMenu = styled.span`
     css`
       border-bottom: 3px solid #64ccf8;
       padding-top: 4.2px;
+      color: white;
     `}
+
+  &:hover {
+    color: white;
+  }
 `;
 
 const MobileLeftMenus = styled(FaBars)`
@@ -192,7 +197,7 @@ const Header = ({ history, location: { pathname } }) => {
         <MainLogo>MONITORO</MainLogo>
       </LinkButton>
       <PopMainMenu isPop={isLeftPop}>
-        <LinkButton to="/dashboard">
+        <LinkButton to="/dashBoard">
           <span>DashBoard</span>
         </LinkButton>
         <LinkButton to="/projects">
@@ -200,8 +205,8 @@ const Header = ({ history, location: { pathname } }) => {
         </LinkButton>
       </PopMainMenu>
       <LeftMenus>
-        <LinkButton to="/dashboard">
-          <LeftMenu active={pathname.includes("/dashboard")}>
+        <LinkButton to="/dashBoard">
+          <LeftMenu active={pathname.includes("/dashBoard")}>
             DashBoard
           </LeftMenu>
         </LinkButton>

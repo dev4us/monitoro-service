@@ -4,10 +4,11 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Store } from "../GlobalState/store";
 
 import Home from "../Routes/Home";
-import LandingScreen from "./DashBoard/LandingScreen";
 import Projects from "./Projects";
 import CreateProjects from "./Projects/Create/CreateProject";
 import SettingTags from "./Projects/Create/SettingTags";
+
+import DashBoard from "./DashBoard";
 
 const LoggedOutRoutes = () => (
   <BrowserRouter>
@@ -21,11 +22,11 @@ const LoggedOutRoutes = () => (
 const LoggedInRoutes = () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/" exact component={LandingScreen} />
+      <Route path="/dashBoard" component={DashBoard} />
       <Route path="/projects" exact component={Projects} />
       <Route path="/projects/create" component={CreateProjects} />
       <Route path="/projects/settingTag" component={SettingTags} />
-      <Redirect from={"*"} to={"/"} />
+      <Redirect from={"*"} to={"/projects"} />
     </Switch>
   </BrowserRouter>
 );

@@ -9,6 +9,7 @@ import styled, { css } from "styled-components";
 import Loading from "../../../Assets/images/loading.gif";
 import Header from "../../../Components/Header";
 import TitleBox from "../../../Components/TitleBox";
+import Subtitle from "../../../Components/Subtitle";
 
 const Container = styled.div`
   display: flex;
@@ -25,12 +26,6 @@ const Container = styled.div`
     padding-left: 5%;
     padding-right: 5%;
   }
-`;
-
-const Subtitle = styled.span`
-  font-size: 1rem;
-  color: #555555;
-  margin-bottom: 15px;
 `;
 
 const InputBox = styled.input`
@@ -193,12 +188,13 @@ const CreateProject = ({ history, location }) => {
           </ThumbnailFrame>
         </form>
 
-        <Subtitle> Project Name </Subtitle>
+        <Subtitle title={"Project Name"} />
         <InputBox
           value={projectName}
           onChange={e => setProjectName(e.target.value)}
         />
-        <Subtitle> Description</Subtitle>
+
+        <Subtitle title={"Description"} />
         <InputBox
           value={description}
           onChange={e => setDescription(e.target.value)}
@@ -229,7 +225,7 @@ const CreateProject = ({ history, location }) => {
                   if (mutationSuccess === true) {
                     toast.success("Create Project Success");
                     history.push({
-                      pathname: "/projects/settingTag",
+                      pathname: "/projects",
                       state: { projectName, newProjectId }
                     });
                   } else {

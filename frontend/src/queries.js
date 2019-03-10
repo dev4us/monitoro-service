@@ -38,6 +38,24 @@ export const GET_USER_RPOFILE_QUERY = gql`
   }
 `;
 
+export const GET_USER_PROJECTS_QUERY = gql`
+  query {
+    GetProjects {
+      projects {
+        name
+        thumbnail
+        description
+        messages {
+          contents
+          tags {
+            name
+          }
+        }
+      }
+    }
+  }
+`;
+
 // Mutation
 export const SIGN_IN_GOOGLE = gql`
   mutation signInGoogle(
