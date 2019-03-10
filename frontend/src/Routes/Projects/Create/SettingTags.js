@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useQuery, useMutation } from "react-apollo-hooks";
 
+import Header from "../../../Components/Header";
+import TitleBox from "../../../Components/TitleBox";
+
 import styled, { css } from "styled-components";
 import { TwitterPicker } from "react-color";
 import { toast } from "react-toastify";
@@ -10,7 +13,7 @@ import { CREATE_TAG_MUTATION, GET_TAGS_QUERY } from "../../../queries";
 const Container = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 100px);
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -293,127 +296,133 @@ const SettingTags = ({ history, location }) => {
   const createTagMutation = useMutation(CREATE_TAG_MUTATION);
 
   return (
-    <Container>
-      <StepBox>
-        <Step active={false}>
-          <div>1</div>
-          <span>Create Project</span>
-        </Step>
-        <Step active={true}>
-          <div>2</div>
-          <span>Setting Tags</span>
-        </Step>
-      </StepBox>
-      <MainFrame>
-        <h2>Let's Add Tags to Use </h2>
-        <h3>ex) Notice, Warning, danger..</h3>
-        <TagBox>
-          {tags.map((object, index) => (
-            <TagItem color={object.color} key={index}>
-              # {object.name}
-            </TagItem>
-          ))}
-        </TagBox>
-        <InputBox>
-          <input
-            type="text"
-            placeholder={`Insert Tag Name here.`}
-            value={addTagName}
-            onChange={event => setAddTagName(event.target.value)}
-          />
-          <ColorZone>
-            <ColorPreview
-              color={tagColor}
-              onClick={() => switchSelectColor(!isSelectColor)}
-            >
-              color
-            </ColorPreview>
-            <ColorPicker
-              able={isSelectColor}
-              color={tagColor}
-              onChangeComplete={color => {
-                setTagColor(color.hex);
-                switchSelectColor(false);
-              }}
-              triangle="hide"
+    <>
+      <Header history={history} location={location} />
+      <TitleBox title="Setting Tags" />
+      <Container>
+        <StepBox>
+          <Step active={false}>
+            <div>1</div>
+            <span>Create Project</span>
+          </Step>
+          <Step active={true}>
+            <div>2</div>
+            <span>Setting Tags</span>
+          </Step>
+        </StepBox>
+        <MainFrame>
+          <h2>Let's Add Tags to Use </h2>
+          <h3>ex) Notice, Warning, danger..</h3>
+          <TagBox>
+            {tags.map((object, index) => (
+              <TagItem color={object.color} key={index}>
+                # {object.name}
+              </TagItem>
+            ))}
+          </TagBox>
+          <InputBox>
+            <input
+              type="text"
+              placeholder={`Insert Tag Name here.`}
+              value={addTagName}
+              onChange={event => setAddTagName(event.target.value)}
             />
-          </ColorZone>
-          <ColorZone>
-            <AddTagBtn
-              color={tagColor}
-              onClick={() => {
-                if (addTagName === "") {
-                  toast.error("Tag name is Required Field");
-                  return false;
-                }
-                createTagMutation({
-                  variables: {
-                    projectId,
-                    name: addTagName,
-                    color: tagColor
+            <ColorZone>
+              <ColorPreview
+                color={tagColor}
+                onClick={() => switchSelectColor(!isSelectColor)}
+              >
+                color
+              </ColorPreview>
+              <ColorPicker
+                able={isSelectColor}
+                color={tagColor}
+                onChangeComplete={color => {
+                  setTagColor(color.hex);
+                  switchSelectColor(false);
+                }}
+                triangle="hide"
+              />
+            </ColorZone>
+            <ColorZone>
+              <AddTagBtn
+                color={tagColor}
+                onClick={() => {
+                  if (addTagName === "") {
+                    toast.error("Tag name is Required Field");
+                    return false;
                   }
-                }).then(
-                  result => {
-                    const {
-                      data: {
-                        CreateTag: { ok: mutationSuccess, error: mutationError }
-                      }
-                    } = result;
-
-                    if (mutationSuccess === true) {
-                      toast.success("Success to Add Tag");
-                      setRefetchTrigger(!refetchTrigger);
-                    } else {
-                      toast.error(mutationError);
+                  createTagMutation({
+                    variables: {
+                      projectId,
+                      name: addTagName,
+                      color: tagColor
                     }
-                  },
-                  error => {
-                    toast.error("Something Wrong, Please Try Again");
-                  }
-                );
-              }}
-            >
-              Add
-            </AddTagBtn>
-          </ColorZone>
-        </InputBox>
-        <SubmitBtn
-          onClick={() => {
-            if (addTagName === "") {
-              toast.error("Please Insert tag name");
-              return false;
-            }
-            createTagMutation({
-              variables: { projectId, name: addTagName, color: tagColor },
-              refetchQueries: [
-                {
-                  query: GET_TAGS_QUERY
-                }
-              ]
-            }).then(
-              result => {
-                const {
-                  data: {
-                    CreateTag: { ok: mutationSuccess, error: mutationError }
-                  }
-                } = result;
+                  }).then(
+                    result => {
+                      const {
+                        data: {
+                          CreateTag: {
+                            ok: mutationSuccess,
+                            error: mutationError
+                          }
+                        }
+                      } = result;
 
-                if (mutationSuccess === true) {
-                  console.log("success");
-                } else {
-                  toast.error(mutationError);
-                }
-              },
-              error => {
-                toast.error("Something Wrong, Please Try Again");
+                      if (mutationSuccess === true) {
+                        setRefetchTrigger(!refetchTrigger);
+                      } else {
+                        toast.error(mutationError);
+                      }
+                    },
+                    error => {
+                      toast.error("Something Wrong, Please Try Again");
+                    }
+                  );
+                }}
+              >
+                Add
+              </AddTagBtn>
+            </ColorZone>
+          </InputBox>
+          <SubmitBtn
+            onClick={() => {
+              if (addTagName === "") {
+                toast.error("Please Insert tag name");
+                return false;
               }
-            );
-          }}
-        >
-          {`Done. Let's Start with ${projectName}`}
-        </SubmitBtn>
-      </MainFrame>
-    </Container>
+              createTagMutation({
+                variables: { projectId, name: addTagName, color: tagColor },
+                refetchQueries: [
+                  {
+                    query: GET_TAGS_QUERY
+                  }
+                ]
+              }).then(
+                result => {
+                  const {
+                    data: {
+                      CreateTag: { ok: mutationSuccess, error: mutationError }
+                    }
+                  } = result;
+
+                  if (mutationSuccess === true) {
+                    console.log("success");
+                  } else {
+                    toast.error(mutationError);
+                  }
+                },
+                error => {
+                  toast.error("Something Wrong, Please Try Again");
+                }
+              );
+            }}
+          >
+            {`Done. Let's Start with ${projectName}`}
+          </SubmitBtn>
+        </MainFrame>
+      </Container>
+    </>
   );
 };
 

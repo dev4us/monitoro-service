@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { useMutation } from "react-apollo-hooks";
-
-import styled from "styled-components";
+import { CREATE_NEW_PROJECT } from "../../../queries";
 import { toast } from "react-toastify";
 
+import styled from "styled-components";
+import Header from "../../../Components/Header";
+import TitleBox from "../../../Components/TitleBox";
+
 import BabyBirdsPng from "../../../Assets/images/babybird.png";
-import { CREATE_NEW_PROJECT } from "../../../queries";
 
 const Container = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 100px);
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -157,75 +159,79 @@ const SubmitBtn = styled.button`
   }
 `;
 
-const CreateProject = ({ history }) => {
+const CreateProject = ({ history, location }) => {
   const [projectName, setProjectName] = useState("");
 
   const createNewProjectMutation = useMutation(CREATE_NEW_PROJECT);
 
   return (
-    <Container>
-      <StepBox>
-        <Step active={true}>
-          <div>1</div>
-          <span>Create Project</span>
-        </Step>
-        <Step active={false}>
-          <div>2</div>
-          <span>Setting Tags</span>
-        </Step>
-      </StepBox>
-      <MainFrame>
-        <h2>Create New Project</h2>
-        <BabyBirds src={BabyBirdsPng} />
-        <InputBox>
-          <h3>Name your Project</h3>
-          <input
-            type="text"
-            placeholder="Required * "
-            value={projectName}
-            onChange={event => setProjectName(event.target.value)}
-          />
-        </InputBox>
-        <SubmitBtn
-          onClick={() => {
-            if (projectName === "") {
-              toast.error("Please Insert your Project name");
-              return false;
-            }
-            createNewProjectMutation({
-              variables: { projectName }
-            }).then(
-              result => {
-                const {
-                  data: {
-                    CreateProject: {
-                      ok: mutationSuccess,
-                      error: mutationError,
-                      project: { id: newProjectId }
-                    }
-                  }
-                } = result;
-
-                if (mutationSuccess === true) {
-                  toast.success("Create Project Success");
-                  history.push({
-                    pathname: "/settingTags",
-                    state: { projectName, newProjectId }
-                  });
-                } else {
-                  toast.error(mutationError);
-                }
-              },
-              error => {
-                toast.error("Something Wrong, Please Try Again");
+    <>
+      <Header location={location} history={history} />
+      <TitleBox title={"Create a Project"} />
+      <Container>
+        <StepBox>
+          <Step active={true}>
+            <div>1</div>
+            <span>Create Project</span>
+          </Step>
+          <Step active={false}>
+            <div>2</div>
+            <span>Setting Tags</span>
+          </Step>
+        </StepBox>
+        <MainFrame>
+          <h2>Create a Project</h2>
+          <BabyBirds src={BabyBirdsPng} />
+          <InputBox>
+            <h3>Name your Project</h3>
+            <input
+              type="text"
+              placeholder="Required * "
+              value={projectName}
+              onChange={event => setProjectName(event.target.value)}
+            />
+          </InputBox>
+          <SubmitBtn
+            onClick={() => {
+              if (projectName === "") {
+                toast.error("Please Insert your Project name");
+                return false;
               }
-            );
-          }}
-        >
-          Create Project
-        </SubmitBtn>
-      </MainFrame>
-    </Container>
+              createNewProjectMutation({
+                variables: { projectName }
+              }).then(
+                result => {
+                  const {
+                    data: {
+                      CreateProject: {
+                        ok: mutationSuccess,
+                        error: mutationError,
+                        project: { id: newProjectId }
+                      }
+                    }
+                  } = result;
+
+                  if (mutationSuccess === true) {
+                    toast.success("Create Project Success");
+                    history.push({
+                      pathname: "/projects/settingTag",
+                      state: { projectName, newProjectId }
+                    });
+                  } else {
+                    toast.error(mutationError);
+                  }
+                },
+                error => {
+                  toast.error("Something Wrong, Please Try Again");
+                }
+              );
+            }}
+          >
+            Create Project
+          </SubmitBtn>
+        </MainFrame>
+      </Container>
+    </>
   );
 };
 

@@ -7,6 +7,7 @@ import { GoogleLogout } from "react-google-login";
 import styled, { css } from "styled-components";
 
 import { FaAngleDown } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import { GET_USER_RPOFILE_QUERY } from "../../queries";
 
 const Container = styled.div`
@@ -17,6 +18,9 @@ const Container = styled.div`
   height: 60px;
   background: black;
   padding-left: 50px;
+  @media (max-width: 850px) {
+    padding-left: 15px;
+  }
 `;
 
 const MainLogo = styled.span`
@@ -26,14 +30,47 @@ const MainLogo = styled.span`
   margin-right: 45px;
   font-weight: bold;
 `;
-const LeftMenus = styled.span``;
+
+const LeftMenus = styled.span`
+  display: flex;
+  height: 100%;
+  align-items: center;
+
+  @media (max-width: 850px) {
+    display: none;
+  }
+`;
 
 const LeftMenu = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
+  width: 100px;
+  height: 100%;
   font-size: 0.8rem;
   padding-top: 1.2px;
-  margin-right: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
   cursor: pointer;
+
+  ${props =>
+    props.active === true &&
+    css`
+      border-bottom: 3px solid #64ccf8;
+      padding-top: 4.2px;
+    `}
+`;
+
+const MobileLeftMenus = styled(FaBars)`
+  display: none;
+  color: white;
+  font-size: 1.3rem;
+
+  @media (max-width: 850px) {
+    display: block;
+    margin-right: 20px;
+  }
 `;
 
 const RightMenus = styled.div`
@@ -92,7 +129,7 @@ const PopSideMenu = styled.div`
   }
 `;
 
-const Header = ({ history }) => {
+const Header = ({ history, location: { pathname } }) => {
   const { dispatch } = useContext(Store);
   const { data } = useQuery(GET_USER_RPOFILE_QUERY);
   const [isPop, setPop] = useState(false);
@@ -103,10 +140,11 @@ const Header = ({ history }) => {
 
   return (
     <Container>
+      <MobileLeftMenus />
       <MainLogo>MONITORO</MainLogo>
       <LeftMenus>
-        <LeftMenu>DashBoard</LeftMenu>
-        <LeftMenu>Projects</LeftMenu>
+        <LeftMenu active={pathname.includes("/dashboard")}>DashBoard</LeftMenu>
+        <LeftMenu active={pathname.includes("/projects")}>Projects</LeftMenu>
       </LeftMenus>
       <RightMenus>
         <img src={data.GetProfile.user.profileImage} alt="profile_img" />

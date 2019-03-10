@@ -5,8 +5,8 @@ import { Store } from "../GlobalState/store";
 
 import Home from "../Routes/Home";
 import LandingScreen from "./DashBoard/LandingScreen";
-import CreateProjects from "./DashBoard/CreateProject/CreateProject";
-import SettingTags from "./DashBoard/CreateProject/SettingTags";
+import CreateProjects from "./Projects/Create/CreateProject";
+import SettingTags from "./Projects/Create/SettingTags";
 
 const LoggedOutRoutes = () => (
   <BrowserRouter>
@@ -21,8 +21,8 @@ const LoggedInRoutes = () => (
   <BrowserRouter>
     <Switch>
       <Route path="/" exact component={LandingScreen} />
-      <Route path="/createProject" component={CreateProjects} />
-      <Route path="/settingTags" component={SettingTags} />
+      <Route path="/projects/create" component={CreateProjects} />
+      <Route path="/projects/settingTag" component={SettingTags} />
       <Redirect from={"*"} to={"/"} />
     </Switch>
   </BrowserRouter>
