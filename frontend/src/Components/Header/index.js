@@ -70,10 +70,10 @@ const PopSideMenu = styled.div`
         `}
   position: absolute;
   width: 200px;
-  top: 60px;
-  right: 0px;
+  top: 50px;
+  right: 33px;
   border: 1px solid #dcdcdc;
-  border-bottom-left-radius: 5px;
+  border-radius: 5px;
 
   background: white;
   z-index: 1;
@@ -109,10 +109,7 @@ const Header = ({ history }) => {
         <LeftMenu>Projects</LeftMenu>
       </LeftMenus>
       <RightMenus>
-        <img
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-          alt="profile_img"
-        />
+        <img src={data.GetProfile.user.profileImage} alt="profile_img" />
         <span>{data.GetProfile.user.userName}</span>
         <AngleDown onClick={() => setPop(!isPop)} />
       </RightMenus>

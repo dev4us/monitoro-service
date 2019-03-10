@@ -135,11 +135,15 @@ const Home = () => {
             buttonText="Login"
             onSuccess={responseGoogle => {
               const {
-                profileObj: { name, email }
+                profileObj: { name, email, imageUrl }
               } = responseGoogle;
 
               signInMutation({
-                variables: { userEmail: email, userName: name }
+                variables: {
+                  userEmail: email,
+                  userName: name,
+                  profileImage: imageUrl
+                }
               }).then(
                 result => {
                   const {

@@ -1,16 +1,6 @@
 import gql from "graphql-tag";
 
 // Query
-export const SIGN_IN_GOOGLE = gql`
-  mutation signInGoogle($userName: String!, $userEmail: String!) {
-    SignIn(userName: $userName, userEmail: $userEmail) {
-      ok
-      error
-      token
-    }
-  }
-`;
-
 export const PARTICIPATE_PROJECTS_QUERY = gql`
   query {
     GetProjects {
@@ -42,12 +32,31 @@ export const GET_USER_RPOFILE_QUERY = gql`
         id
         userName
         userEmail
+        profileImage
       }
     }
   }
 `;
 
 // Mutation
+export const SIGN_IN_GOOGLE = gql`
+  mutation signInGoogle(
+    $userName: String!
+    $userEmail: String!
+    $profileImage: String
+  ) {
+    SignIn(
+      userName: $userName
+      userEmail: $userEmail
+      profileImage: $profileImage
+    ) {
+      ok
+      error
+      token
+    }
+  }
+`;
+
 export const CREATE_NEW_PROJECT = gql`
   mutation createNewProject($projectName: String!) {
     CreateProject(projectName: $projectName) {
