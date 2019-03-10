@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useQuery } from "react-apollo-hooks";
 import { Store } from "../../GlobalState/store";
 
 import { GoogleLogout } from "react-google-login";
@@ -6,6 +7,7 @@ import { GoogleLogout } from "react-google-login";
 import styled, { css } from "styled-components";
 
 import { FaAngleDown } from "react-icons/fa";
+import { GET_USER_RPOFILE_QUERY } from "../../queries";
 
 const Container = styled.div`
   display: flex;
@@ -92,7 +94,13 @@ const PopSideMenu = styled.div`
 
 const Header = ({ history }) => {
   const { dispatch } = useContext(Store);
+  const { data } = useQuery(GET_USER_RPOFILE_QUERY);
   const [isPop, setPop] = useState(false);
+
+  if (!data.GetProfile) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Container>
       <MainLogo>MONITORO</MainLogo>
@@ -105,7 +113,7 @@ const Header = ({ history }) => {
           src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
           alt="profile_img"
         />
-        <span>Aiden Pearce</span>
+        <span>{data.GetProfile.user.userName}</span>
         <AngleDown onClick={() => setPop(!isPop)} />
       </RightMenus>
       <PopSideMenu isPop={isPop}>

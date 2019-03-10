@@ -35,6 +35,18 @@ export const GET_TAGS_QUERY = gql`
   }
 `;
 
+export const GET_USER_RPOFILE_QUERY = gql`
+  query {
+    GetProfile {
+      user {
+        id
+        userName
+        userEmail
+      }
+    }
+  }
+`;
+
 // Mutation
 export const CREATE_NEW_PROJECT = gql`
   mutation createNewProject($projectName: String!) {
