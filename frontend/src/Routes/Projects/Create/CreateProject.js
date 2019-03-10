@@ -1,197 +1,114 @@
 import React, { useState } from "react";
+
 import { useMutation } from "react-apollo-hooks";
 import { CREATE_NEW_PROJECT } from "../../../queries";
 import { toast } from "react-toastify";
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Header from "../../../Components/Header";
 import TitleBox from "../../../Components/TitleBox";
-
-import BabyBirdsPng from "../../../Assets/images/babybird.png";
 
 const Container = styled.div`
   display: flex;
   width: 100%;
   height: calc(100% - 100px);
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
 
-const StepBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 600px;
-  height: 45px;
-  margin-bottom: 30px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 25%;
+  padding-right: 25%;
+
   @media (max-width: 850px) {
-    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
   }
 `;
 
-const Step = styled.div`
-  :not(:last-child) {
-    margin-right: 10px;
-  }
+const Subtitle = styled.span`
+  font-size: 1rem;
+  color: #555555;
+  margin-bottom: 15px;
+`;
+
+const InputBox = styled.input`
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 10px;
+  height: 30px;
+  color: #555555;
+  border: 1px solid #eaeaea;
+`;
+
+const RemoteFrame = styled.div`
   display: flex;
-  justify-content: center;
+  border-top: 1px solid #eaeaea;
+  padding-top: 10px;
+  justify-content: flex-end;
   align-items: center;
-  width: 200px;
-  height: 45px;
-  cursor: default;
-
-  @media (max-width: 850px) {
-    width: 150px;
-  }
-
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    border: 1px solid
-      ${props => (props.active === true ? "#73c6f3" : "#c6e8fa")};
-    border-radius: 100%;
-    color: ${props => (props.active === true ? "#73c6f3" : "#c6e8fa")};
-    font-size: 1.2rem;
-    font-weight: bold;
-    @media (max-width: 850px) {
-      width: 25px;
-      height: 25px;
-    }
-  }
 
   span {
-    color: ${props => (props.active === true ? "#73c6f3" : "#c6e8fa")};
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: bold;
-    margin-left: 10px;
-  }
-`;
+    color: #848181;
+    cursor: pointer;
 
-const MainFrame = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 600px;
-  height: 400px;
-  border: 2px solid #ececec;
-  padding: 45px 15px 15px 15px;
-
-  h2 {
-    color: #72c5f3;
-    font-size: 1.6rem;
-    font-weight: bold;
-    @media (max-width: 850px) {
-      font-size: 1rem;
-    }
-  }
-
-  @media (max-width: 850px) {
-    width: 80%;
-  }
-`;
-
-const BabyBirds = styled.img`
-  width: 150px;
-`;
-
-const InputBox = styled.div`
-  width: 80%;
-  height: 70px;
-  margin-bottom: 15px;
-
-  @media (max-width: 850px) {
-    width: 100%;
-  }
-
-  h3 {
-    color: #9b9b9b;
-    font-weight: bold;
-    margin-bottom: 10px;
-    font-size: 1rem;
-
-    @media (max-width: 850px) {
-      font-size: 0.8rem;
-    }
-  }
-  input {
-    width: 100%;
-    height: 35px;
-    padding-left: 15px;
-    padding-right: 15px;
-    border: 1px solid #dcdcdc;
-    border-radius: 2px;
-    color: #6d6b6b;
-
-    &::placeholder {
-      color: #ff5f8f;
-    }
-
-    &:focus {
-      outline-color: rgb(77, 144, 254);
-      outline-offset: -2px;
-      outline-style: auto;
-      outline-width: 2px;
+    &:hover {
+      color: black;
     }
   }
 `;
 
 const SubmitBtn = styled.button`
-  width: 80%;
-  height: 50px;
+  position: relative;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 35px;
   border: none;
-  border-radius: 3px;
-  background: #73c6f3;
-  cursor: pointer;
+  margin-left: 15px;
+
+  font-size: 0.7rem;
   color: white;
-  font-size: 1rem;
-  font-weight: bold;
+  cursor: pointer;
 
-  :hover {
-    background: #8cd0f4;
+  &:hover {
+    ${props =>
+      props.isAble
+        ? css`
+            background: #2fbbf7;
+          `
+        : css`
+            background: #dcdcdc;
+          `}
   }
 
-  @media (max-width: 850px) {
-    width: 100%;
-  }
+  ${props =>
+    props.isAble
+      ? css`
+          background: #64ccf8;
+        `
+      : css`
+          background: #dcdcdc;
+        `}
 `;
 
 const CreateProject = ({ history, location }) => {
   const [projectName, setProjectName] = useState("");
-
   const createNewProjectMutation = useMutation(CREATE_NEW_PROJECT);
-
   return (
     <>
       <Header location={location} history={history} />
       <TitleBox title={"Create a Project"} />
       <Container>
-        <StepBox>
-          <Step active={true}>
-            <div>1</div>
-            <span>Create Project</span>
-          </Step>
-          <Step active={false}>
-            <div>2</div>
-            <span>Setting Tags</span>
-          </Step>
-        </StepBox>
-        <MainFrame>
-          <h2>Create a Project</h2>
-          <BabyBirds src={BabyBirdsPng} />
-          <InputBox>
-            <h3>Name your Project</h3>
-            <input
-              type="text"
-              placeholder="Required * "
-              value={projectName}
-              onChange={event => setProjectName(event.target.value)}
-            />
-          </InputBox>
+        <Subtitle> Project Name </Subtitle>
+        <InputBox
+          value={projectName}
+          onChange={e => setProjectName(e.target.value)}
+        />
+        <RemoteFrame>
+          <span>Cancel</span>
           <SubmitBtn
+            isAble={projectName !== ""}
             onClick={() => {
               if (projectName === "") {
                 toast.error("Please Insert your Project name");
@@ -229,7 +146,7 @@ const CreateProject = ({ history, location }) => {
           >
             Create Project
           </SubmitBtn>
-        </MainFrame>
+        </RemoteFrame>
       </Container>
     </>
   );
