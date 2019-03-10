@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useQuery } from "react-apollo-hooks";
+import { Link } from "react-router-dom";
 import { Store } from "../../GlobalState/store";
 
 import { GoogleLogout } from "react-google-login";
@@ -130,10 +131,51 @@ const PopSideMenu = styled.div`
   }
 `;
 
+const PopMainMenu = styled.div`
+  ${props =>
+    props.isPop === true
+      ? css`
+          display: block;
+        `
+      : css`
+          display: none;
+        `}
+  position: absolute;
+  width: 200px;
+  top: 50px;
+  left: 5px;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  box-shadow: 0 7px 25px 0 rgba(0, 0, 0, 0.1);
+
+  background: white;
+  z-index: 1;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  span {
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    font-size: 0.8rem;
+    color: #5c5c5c;
+    cursor: pointer;
+    user-select: none;
+  }
+`;
+
+const LinkButton = styled(Link)`
+  display: flex;
+  align-items: center;
+  height: 100%;
+`;
+
 const Header = ({ history, location: { pathname } }) => {
   const { dispatch } = useContext(Store);
   const { data } = useQuery(GET_USER_RPOFILE_QUERY);
-  const [isPop, setPop] = useState(false);
+  const [isLeftPop, setLeftPop] = useState(false);
+  const [isRightPop, setRightPop] = useState(false);
 
   if (!data.GetProfile) {
     return <div>Loading...</div>;
@@ -141,18 +183,40 @@ const Header = ({ history, location: { pathname } }) => {
 
   return (
     <Container>
-      <MobileLeftMenus />
-      <MainLogo>MONITORO</MainLogo>
+      <MobileLeftMenus
+        onClick={() => {
+          setLeftPop(!isLeftPop);
+        }}
+      />
+      <LinkButton to="/projects">
+        <MainLogo>MONITORO</MainLogo>
+      </LinkButton>
+      <PopMainMenu isPop={isLeftPop}>
+        <LinkButton to="/dashboard">
+          <span>DashBoard</span>
+        </LinkButton>
+        <LinkButton to="/projects">
+          <span>Projects</span>
+        </LinkButton>
+      </PopMainMenu>
       <LeftMenus>
-        <LeftMenu active={pathname.includes("/dashboard")}>DashBoard</LeftMenu>
-        <LeftMenu active={pathname.includes("/projects")}>Projects</LeftMenu>
+        <LinkButton to="/dashboard">
+          <LeftMenu active={pathname.includes("/dashboard")}>
+            DashBoard
+          </LeftMenu>
+        </LinkButton>
+        <LinkButton to="/projects">
+          <LeftMenu to="/projects" active={pathname.includes("/projects")}>
+            Projects
+          </LeftMenu>
+        </LinkButton>
       </LeftMenus>
       <RightMenus>
         <img src={data.GetProfile.user.profileImage} alt="profile_img" />
         <span>{data.GetProfile.user.userName}</span>
-        <AngleDown onClick={() => setPop(!isPop)} />
+        <AngleDown onClick={() => setRightPop(!isRightPop)} />
       </RightMenus>
-      <PopSideMenu isPop={isPop}>
+      <PopSideMenu isPop={isRightPop}>
         <span>Your Profile</span>
         <span>Help</span>
 
