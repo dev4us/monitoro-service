@@ -8,6 +8,7 @@ type Query {
   GetMessages(apiKey: String!): GetMessagesResponse!
   GetProjects: GetProjectsResponse!
   GetTags(projectId: Int!): GetTagsResponse!
+  GetProfile: GetProfileResponse!
   User: String!
 }
 
@@ -87,6 +88,12 @@ type Tag {
   projectId: Int
   createdAt: String!
   updatedAt: String
+}
+
+type GetProfileResponse {
+  ok: Boolean!
+  error: String
+  user: User
 }
 
 type User {
