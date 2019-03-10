@@ -111,6 +111,7 @@ const PopSideMenu = styled.div`
   right: 33px;
   border: 1px solid #dcdcdc;
   border-radius: 5px;
+  box-shadow: 0 7px 25px 0 rgba(0, 0, 0, 0.1);
 
   background: white;
   z-index: 1;

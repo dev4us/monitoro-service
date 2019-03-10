@@ -25,6 +25,12 @@ class Project extends BaseEntity {
   @Column({ nullable: false })
   name: string;
 
+  @Column({ nullable: true })
+  description: string;
+
+  @Column({ nullable: true })
+  thumbnail: string;
+
   @ManyToMany(type => User, user => user.innerProjects)
   @JoinTable()
   participants: User[];

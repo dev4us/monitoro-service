@@ -1,6 +1,8 @@
 type Project {
   id: Int!
   name: String!
+  thumbnail: String
+  description: String
   participants: [User]!
   admin: User
   messages: [Message]

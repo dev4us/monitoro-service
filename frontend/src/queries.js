@@ -58,8 +58,16 @@ export const SIGN_IN_GOOGLE = gql`
 `;
 
 export const CREATE_NEW_PROJECT = gql`
-  mutation createNewProject($projectName: String!) {
-    CreateProject(projectName: $projectName) {
+  mutation createNewProject(
+    $projectName: String!
+    $description: String
+    $thumbnail: String
+  ) {
+    CreateProject(
+      projectName: $projectName
+      description: $description
+      thumbnail: $thumbnail
+    ) {
       ok
       error
       project {

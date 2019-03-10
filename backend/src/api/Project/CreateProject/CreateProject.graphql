@@ -5,5 +5,9 @@ type CreateProjectResponse {
 }
 
 type Mutation {
-  CreateProject(projectName: String!): CreateProjectResponse!
+  CreateProject(
+    projectName: String!
+    description: String
+    thumbnail: String
+  ): CreateProjectResponse!
 }

@@ -16,7 +16,7 @@ const resolvers: Resolvers = {
         args: CreateProjectMutationArgs,
         { req }
       ): Promise<CreateProjectResponse> => {
-        const { projectName } = args;
+        const { projectName, description, thumbnail } = args;
         const { user } = req;
 
         try {
@@ -37,7 +37,9 @@ const resolvers: Resolvers = {
           } else {
             const newProject = await Project.create({
               name: projectName,
-              participants: [user]
+              participants: [user],
+              description: description || undefined,
+              thumbnail: thumbnail || undefined
             }).save();
 
             return {
