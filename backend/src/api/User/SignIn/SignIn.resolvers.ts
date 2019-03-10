@@ -9,18 +9,20 @@ import createJWT from "../../../../src/utils/createJWT";
 const resolvers: Resolvers = {
   Mutation: {
     SignIn: async (_, args: SignInMutationArgs): Promise<SignInResponse> => {
-      const { userEmail, userName } = args;
+      const { userEmail, userName, profileImage } = args;
       let token;
 
       try {
         const existUser = await User.findOne({ userEmail });
 
         if (!existUser) {
-          const newUser = await User.create({ userEmail, userName }).save();
-          console.log("userid: ", newUser.id);
+          const newUser = await User.create({
+            userEmail,
+            userName,
+            profileImage: profileImage || undefined
+          }).save();
           token = createJWT(newUser.id);
         } else {
-          console.log("oldUser: ", existUser.id);
           token = createJWT(existUser.id);
         }
 

@@ -22,6 +22,9 @@ class User extends BaseEntity {
   @Column({ nullable: false })
   userName: string;
 
+  @Column({ nullable: true })
+  profileImage: string;
+
   @ManyToMany(type => Project, project => project.participants)
   @JoinTable()
   innerProjects: Project[];

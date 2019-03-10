@@ -2,6 +2,7 @@ type User {
   id: Int!
   userName: String!
   userEmail: String!
+  profileImage: String
   innerProjects: [Project]
   manages: [Project]
   createdAt: String!

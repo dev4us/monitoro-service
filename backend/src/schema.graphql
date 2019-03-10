@@ -25,7 +25,7 @@ type Mutation {
   SendMessage(level: String!, contents: String!, fileName: String, apiKey: String!, tags: [attachTags]): SendMessageResponse!
   CreateProject(projectName: String!): CreateProjectResponse!
   CreateTag(projectId: Int!, name: String!, color: String): CreateTagResponse!
-  SignIn(userEmail: String!, userName: String!): SignInResponse!
+  SignIn(userEmail: String!, userName: String!, profileImage: String): SignInResponse!
 }
 
 type Subscription {
@@ -100,6 +100,7 @@ type User {
   id: Int!
   userName: String!
   userEmail: String!
+  profileImage: String
   innerProjects: [Project]
   manages: [Project]
   createdAt: String!
