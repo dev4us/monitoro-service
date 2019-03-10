@@ -5,6 +5,8 @@ import { PARTICIPATE_PROJECTS_QUERY } from "../../queries";
 
 import { SyncLoader } from "react-spinners";
 
+import Header from "../../Components/Header";
+
 const DashBoard = ({ history }) => {
   const { data, error } = useQuery(PARTICIPATE_PROJECTS_QUERY);
 
@@ -24,9 +26,9 @@ const DashBoard = ({ history }) => {
       if (ok === true) {
         // No have Project : (
         if (projects.length === 0) {
-          history.push("/createProject");
+          //history.push("/createProject");
         } else {
-          alert("You have Projects ! : )");
+          //alert("You have Projects ! : )");
         }
       } else {
         alert(errorText);
@@ -35,9 +37,12 @@ const DashBoard = ({ history }) => {
   }, [data]);
 
   return (
-    <div className="loaderFullWidth">
-      <SyncLoader sizeUnit={"px"} size={15} color={"#73c6f3"} />
-    </div>
+    <>
+      <Header history={history} />
+      <div className="loaderFullWidth">
+        <SyncLoader sizeUnit={"px"} size={15} color={"#73c6f3"} />
+      </div>
+    </>
   );
 };
 

@@ -125,6 +125,7 @@ const Home = () => {
 
           <GoogleLogin
             clientId="640441314268-7dthvqpin5rrb6kithpurt4kf9mrd9fq.apps.googleusercontent.com"
+            autoLoad={false}
             render={renderProps => (
               <SNSLoginButton onClick={renderProps.onClick}>
                 <SNSLogo src={GoogleLogoSvg} />{" "}
