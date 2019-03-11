@@ -1,6 +1,7 @@
 export const initialState = {
   isLoggedIn: Boolean(localStorage.getItem("jwt")),
-  JWT: localStorage.getItem("jwt") || null
+  JWT: localStorage.getItem("jwt") || null,
+  selectedProjectId: localStorage.getItem("selectedProjectId") || null
 };
 
 const reducer = (state, action) => {
@@ -18,6 +19,11 @@ const reducer = (state, action) => {
         ...reduced,
         isLoggedIn: false,
         JWT: null
+      };
+    case "SWITCH_PROJECT":
+      return {
+        ...reduced,
+        selectedProjectId: action.payload
       };
     case "SET_VALUE":
       return {

@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Store } from "../../GlobalState/store";
+import { Link } from "react-router-dom";
+
 import styled from "styled-components";
 import Header from "../../Components/Header";
 import TitleBox from "../../Components/TitleBox";
+
+import { GiLighthouse } from "react-icons/gi";
 
 const Container = styled.div`
   display: flex;
@@ -20,12 +25,58 @@ const Container = styled.div`
   }
 `;
 
+const NotFound = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 300px;
+  margin-top: 15%;
+
+  span {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #858e90;
+  }
+`;
+
+const LightHouse = styled(GiLighthouse)`
+  font-size: 10rem;
+  color: #858e90;
+`;
+
+const LinkBtn = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  background: #2fbbf7;
+`;
+
 const Dashboard = ({ location, history }) => {
+  const { state } = useContext(Store);
+
   return (
     <>
       <Header location={location} history={history} />
-      <TitleBox title={"Your Projects"} />
-      <Container />
+      {state.selectedProjectId === null && (
+        <>
+          <TitleBox title="Select your Project or Create a Project First" />
+          <Container>
+            <NotFound>
+              <LightHouse />
+              <span>Select your Project First</span>
+              <LinkBtn to="/projects">Go Projects</LinkBtn>
+            </NotFound>
+          </Container>
+        </>
+      )}
     </>
   );
 };
