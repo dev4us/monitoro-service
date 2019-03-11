@@ -36,6 +36,7 @@ const Underline = styled.div`
 `;
 
 const Project = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -43,15 +44,14 @@ const Project = styled.div`
   border: 1px solid #ececec;
   /* box-shadow: 0 7px 25px 0 rgba(0, 0, 0, 0.1);*/
   margin-bottom: 13px;
-  padding: 10px 10px 10px 10px;
+  padding: 10px 10px 0px 10px;
   cursor: pointer;
 
-  transition: all 0.3s;
+  transition: all 0.1s ease;
 
   :hover {
-    /* background: #f7f7f7;*/
     border: 2px solid #35a2d1;
-    padding: 9px 9px 9px 9px;
+    padding: 9px 9px 7px 9px;
   }
 `;
 
@@ -67,27 +67,26 @@ const About = styled.div`
   flex-direction: column;
   height: 100%;
   width: calc(100% - 85px);
-  span {
-    :first-child {
-      overflow: hidden;
-      height: 22px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: black;
-      padding-right: 5%;
-    }
-    :not(:first-child) {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      padding-top: 5px;
-      padding-right: 5%;
-      font-size: 0.7rem;
-      color: #5c5c5c;
-    }
-  }
+`;
+
+const ProjectName = styled.span`
+  overflow: hidden;
+  height: 22px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: black;
+  padding-right: 5%;
+`;
+const ProjectDescription = styled.span`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-top: 5px;
+  padding-right: 5%;
+  font-size: 0.7rem;
+  color: #5c5c5c;
 `;
 
 const NotFound = styled.div`
@@ -148,8 +147,8 @@ const Projects = ({ location, history }) => {
                 }
               />
               <About>
-                <span>{object.name}</span>
-                <span>{object.description}</span>
+                <ProjectName>{object.name}</ProjectName>
+                <ProjectDescription>{object.description}</ProjectDescription>
               </About>
             </Project>
           ))}

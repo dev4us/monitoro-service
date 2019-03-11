@@ -213,7 +213,7 @@ const Header = ({ history, location: { pathname } }) => {
         <MainLogo>MONITORO</MainLogo>
       </LinkButton>
       <PopMainMenu isPop={isLeftPop}>
-        <LinkButton to="/dashBoard">
+        <LinkButton to="/dashboard">
           <span>DashBoard</span>
         </LinkButton>
         <LinkButton to="/projects">
@@ -221,9 +221,9 @@ const Header = ({ history, location: { pathname } }) => {
         </LinkButton>
       </PopMainMenu>
       <LeftMenus>
-        <LinkButton to="/dashBoard">
-          <LeftMenu active={pathname.includes("/dashBoard")}>
-            DashBoard
+        <LinkButton to="/dashboard">
+          <LeftMenu active={pathname.includes("/dashboard")}>
+            Dashboard
           </LeftMenu>
         </LinkButton>
         <LinkButton to="/projects">
