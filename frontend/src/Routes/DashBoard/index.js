@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 import { Store } from "../../GlobalState/store";
 import { Link } from "react-router-dom";
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Header from "../../Components/Header";
 import TitleBox from "../../Components/TitleBox";
+import MessageLog from "./MessageLog";
 
 import { GiLighthouse } from "react-icons/gi";
 import { useQuery } from "react-apollo-hooks";
@@ -14,6 +15,7 @@ import { GET_PROJECT_QUERY } from "../../queries";
 const Container = styled.div`
   display: flex;
   width: 100%;
+  height: 100%;
   min-height: calc(100% - 100px);
   flex-direction: column;
 
@@ -26,6 +28,13 @@ const Container = styled.div`
     padding-left: 5%;
     padding-right: 5%;
   }
+
+  ${props =>
+    props.dashboard === true &&
+    css`
+      flex-direction: column;
+      padding: unset;
+    `}
 `;
 
 const NotFound = styled.div`
@@ -65,11 +74,11 @@ const LinkBtn = styled(Link)`
 const Dashboard = ({ location, history }) => {
   const { state } = useContext(Store);
 
-  const { data, error, loading } = useQuery(GET_PROJECT_QUERY, {
+  const { data, loading } = useQuery(GET_PROJECT_QUERY, {
     variables: { projectId: Number(state.selectedProjectId) }
   });
 
-  console.log(data, error, Number(state.selectedProjectId));
+  // console.log(data, error, Number(state.selectedProjectId));
   return (
     <>
       <Header location={location} history={history} />
@@ -93,7 +102,14 @@ const Dashboard = ({ location, history }) => {
           </Container>
         </>
       )}
-      {data.GetProject && data.GetProject.project && <div>1</div>}
+      {data.GetProject && data.GetProject.project && (
+        <>
+          <TitleBox title={data.GetProject.project.name} />
+          <Container dashboard={true}>
+            <MessageLog />
+          </Container>
+        </>
+      )}
     </>
   );
 };

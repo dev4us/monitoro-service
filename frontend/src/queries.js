@@ -64,12 +64,22 @@ export const GET_PROJECT_QUERY = gql`
       error
       project {
         name
-        messages {
-          contents
-          tags {
-            name
-            color
-          }
+      }
+    }
+  }
+`;
+
+export const GET_MESSAGES_LASTEST_QUERY = gql`
+  query getMessages($projectId: Int!) {
+    GetMessages(projectId: $projectId) {
+      ok
+      error
+      messages {
+        contents
+        createdAt
+        tags {
+          name
+          color
         }
       }
     }

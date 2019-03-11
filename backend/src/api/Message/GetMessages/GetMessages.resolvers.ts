@@ -38,12 +38,17 @@ const resolvers: Resolvers = {
           };
         }
 
-        const messages = await Message.find({
-          where: {
-            projectId: project.id
-          },
-          relations: ["tags"]
-        });
+        const messages = await getRepository(Message)
+          .createQueryBuilder("message")
+          .innerJoinAndSelect(
+            "message.tags",
+            "tags",
+            "tags.projectId = :projectId",
+            { projectId }
+          )
+          .where({ projectId })
+          .orderBy("message.createdAt", "DESC")
+          .getMany();
 
         return {
           ok: true,
