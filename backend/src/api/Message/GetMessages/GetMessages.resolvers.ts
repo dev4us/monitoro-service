@@ -17,7 +17,7 @@ const resolvers: Resolvers = {
         { req }
       ): Promise<GetMessagesResponse> => {
         const { user } = req;
-        const { apiKey } = args;
+        const { projectId } = args;
 
         const project = await getRepository(Project)
           .createQueryBuilder("project")
@@ -27,7 +27,7 @@ const resolvers: Resolvers = {
             "participants.id = :userId",
             { userId: user.id }
           )
-          .where({ apiKey })
+          .where({ projectId })
           .getOne();
 
         if (!project) {

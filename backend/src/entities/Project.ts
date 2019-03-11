@@ -9,7 +9,8 @@ import {
   ManyToMany,
   Column,
   JoinTable,
-  BeforeInsert
+  BeforeInsert,
+  JoinColumn
 } from "typeorm";
 
 import hat from "hat";
@@ -39,6 +40,7 @@ class Project extends BaseEntity {
   admin: User;
 
   @OneToMany(type => Message, message => message.project)
+  @JoinColumn()
   messages: Message[];
 
   @OneToMany(type => Tag, tag => tag.project)

@@ -5,7 +5,8 @@ type GetMessagesResponse {
 }
 
 type Query {
-  GetMessages(apiKey: String!): GetMessagesResponse!
+  GetMessages(projectId: Int!): GetMessagesResponse!
+  GetProject(projectId: Int!): GetProjectResponse!
   GetProjects: GetProjectsResponse!
   GetTags(projectId: Int!): GetTagsResponse!
   GetProfile: GetProfileResponse!
@@ -45,6 +46,12 @@ type Message {
 }
 
 type CreateProjectResponse {
+  ok: Boolean!
+  error: String
+  project: Project
+}
+
+type GetProjectResponse {
   ok: Boolean!
   error: String
   project: Project

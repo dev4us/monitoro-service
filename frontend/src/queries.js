@@ -42,6 +42,7 @@ export const GET_USER_PROJECTS_QUERY = gql`
   query {
     GetProjects {
       projects {
+        id
         name
         thumbnail
         description
@@ -49,6 +50,25 @@ export const GET_USER_PROJECTS_QUERY = gql`
           contents
           tags {
             name
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const GET_PROJECT_QUERY = gql`
+  query getProject($projectId: Int!) {
+    GetProject(projectId: $projectId) {
+      ok
+      error
+      project {
+        name
+        messages {
+          contents
+          tags {
+            name
+            color
           }
         }
       }

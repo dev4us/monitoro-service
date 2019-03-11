@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { Store } from "../../GlobalState/store";
 
 import Loading from "../../Components/Loading";
 
@@ -111,6 +112,7 @@ const LightHouse = styled(GiLighthouse)`
 `;
 
 const Projects = ({ location, history }) => {
+  const { dispatch } = useContext(Store);
   const { data, loading } = useQuery(GET_USER_PROJECTS_QUERY, {
     fetchPolicy: "network-only"
   });
@@ -138,7 +140,17 @@ const Projects = ({ location, history }) => {
         {!loading &&
           data.GetProjects &&
           data.GetProjects.projects.map((object, index) => (
-            <Project key={index}>
+            <Project
+              key={index}
+              onClick={() => {
+                localStorage.setItem("selectedProjectId", object.id);
+                dispatch({
+                  action: "SWITCH_PROJECT",
+                  payload: object.id
+                });
+                history.push("/dashboard");
+              }}
+            >
               <Thumbnail
                 alt="projectThumbnail"
                 src={

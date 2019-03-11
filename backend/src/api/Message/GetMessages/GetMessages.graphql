@@ -5,5 +5,5 @@ type GetMessagesResponse {
 }
 
 type Query {
-  GetMessages(apiKey: String!): GetMessagesResponse!
+  GetMessages(projectId: Int!): GetMessagesResponse!
 }

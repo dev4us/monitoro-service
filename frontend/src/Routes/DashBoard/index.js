@@ -7,6 +7,9 @@ import Header from "../../Components/Header";
 import TitleBox from "../../Components/TitleBox";
 
 import { GiLighthouse } from "react-icons/gi";
+import { useQuery } from "react-apollo-hooks";
+import LoadingPage from "../../Components/Loading";
+import { GET_PROJECT_QUERY } from "../../queries";
 
 const Container = styled.div`
   display: flex;
@@ -62,9 +65,22 @@ const LinkBtn = styled(Link)`
 const Dashboard = ({ location, history }) => {
   const { state } = useContext(Store);
 
+  const { data, error, loading } = useQuery(GET_PROJECT_QUERY, {
+    variables: { projectId: Number(state.selectedProjectId) }
+  });
+
+  console.log(data, error, Number(state.selectedProjectId));
   return (
     <>
       <Header location={location} history={history} />
+      {loading && (
+        <>
+          <TitleBox title="Select your Project or Create a Project First" />
+          <Container>
+            <LoadingPage />
+          </Container>
+        </>
+      )}
       {state.selectedProjectId === null && (
         <>
           <TitleBox title="Select your Project or Create a Project First" />
@@ -77,6 +93,7 @@ const Dashboard = ({ location, history }) => {
           </Container>
         </>
       )}
+      {data.GetProject && data.GetProject.project && <div>1</div>}
     </>
   );
 };
