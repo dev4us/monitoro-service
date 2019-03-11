@@ -50,11 +50,12 @@ const LeftMenu = styled.span`
   width: 100px;
   height: 100%;
   font-size: 0.8rem;
+  font-weight: bold;
   padding-top: 1.2px;
   padding-left: 15px;
   padding-right: 15px;
   cursor: pointer;
-
+  transition: all 0.3s;
   ${props =>
     props.active === true &&
     css`
@@ -62,7 +63,6 @@ const LeftMenu = styled.span`
       padding-top: 4.2px;
       color: white;
     `}
-
   &:hover {
     color: white;
   }
@@ -87,12 +87,12 @@ const RightMenus = styled.div`
   align-items: center;
 
   img {
-    height: 50%;
+    height: 60%;
     margin-right: 10px;
   }
   span {
     color: white;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     margin-right: 5px;
   }
 `;
@@ -103,14 +103,6 @@ const AngleDown = styled(FaAngleDown)`
 `;
 
 const PopSideMenu = styled.div`
-  ${props =>
-    props.isPop === true
-      ? css`
-          display: block;
-        `
-      : css`
-          display: none;
-        `}
   position: absolute;
   width: 200px;
   top: 50px;
@@ -123,6 +115,15 @@ const PopSideMenu = styled.div`
   z-index: 1;
   padding-top: 5px;
   padding-bottom: 5px;
+
+  ${props =>
+    props.isPop === true
+      ? css`
+          display: block;
+        `
+      : css`
+          display: none;
+        `}
 
   span {
     display: flex;
@@ -141,6 +142,9 @@ const PopMainMenu = styled.div`
     props.isPop === true
       ? css`
           display: block;
+          @media (min-width: 850px) {
+            display: none;
+          }
         `
       : css`
           display: none;
@@ -182,8 +186,20 @@ const Header = ({ history, location: { pathname } }) => {
   const [isLeftPop, setLeftPop] = useState(false);
   const [isRightPop, setRightPop] = useState(false);
 
+  let profileImage = "";
+  let userName = "";
+
   if (!data.GetProfile) {
-    return <div>Loading...</div>;
+    //return <div>Loading...</div>;
+    /*data.GetProfile.user.profileImage =
+      ;
+    data.GetProfile.user.userName = ;*/
+    profileImage =
+      "https://res.cloudinary.com/monitoro/image/upload/v1552214538/no-thumbnail.png";
+    userName = "loading..";
+  } else {
+    profileImage = data.GetProfile.user.profileImage;
+    userName = data.GetProfile.user.userName;
   }
 
   return (
@@ -217,8 +233,8 @@ const Header = ({ history, location: { pathname } }) => {
         </LinkButton>
       </LeftMenus>
       <RightMenus>
-        <img src={data.GetProfile.user.profileImage} alt="profile_img" />
-        <span>{data.GetProfile.user.userName}</span>
+        <img src={profileImage} alt="profile_img" />
+        <span>{userName}</span>
         <AngleDown onClick={() => setRightPop(!isRightPop)} />
       </RightMenus>
       <PopSideMenu isPop={isRightPop}>

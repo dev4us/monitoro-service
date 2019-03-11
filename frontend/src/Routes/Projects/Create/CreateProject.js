@@ -31,7 +31,7 @@ const Container = styled.div`
 const InputBox = styled.input`
   padding-left: 15px;
   padding-right: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   height: 30px;
   color: #555555;
   border: 1px solid #eaeaea;
@@ -58,13 +58,13 @@ const RemoteFrame = styled.div`
 
 const SubmitBtn = styled.button`
   position: relative;
-  padding-left: 20px;
-  padding-right: 20px;
-  height: 35px;
+  height: 38px;
+  padding: 10px 15px 10px 15px;
   border: none;
   margin-left: 15px;
+  border-radius: 5px;
 
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   color: white;
   cursor: pointer;
 
@@ -102,7 +102,7 @@ const EditThumbnailTag = styled.span`
   padding-right: 1px;
   padding-top: 2px;
   padding-bottom: 2px;
-  background: #dcdcdc;
+  background: #5c5c5c;
 
   color: white;
   font-size: 0.6rem;
@@ -200,7 +200,7 @@ const CreateProject = ({ history, location }) => {
           onChange={e => setDescription(e.target.value)}
         />
         <RemoteFrame>
-          <span>Cancel</span>
+          <span onClick={() => history.goBack()}>Cancel</span>
           <SubmitBtn
             isAble={projectName !== ""}
             onClick={() => {
@@ -238,7 +238,7 @@ const CreateProject = ({ history, location }) => {
               );
             }}
           >
-            Create Project
+            Create a Project
           </SubmitBtn>
         </RemoteFrame>
       </Container>

@@ -41,15 +41,17 @@ const Project = styled.div`
   width: 100%;
   height: 80px;
   border: 1px solid #ececec;
-  box-shadow: 0 7px 25px 0 rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 7px 25px 0 rgba(0, 0, 0, 0.1);*/
   margin-bottom: 13px;
-  padding-top: 10px;
-  padding-left: 10px;
+  padding: 10px 10px 10px 10px;
   cursor: pointer;
 
+  transition: all 0.3s;
+
   :hover {
-    box-shadow: none;
-    background: #f2fcff;
+    /* background: #f7f7f7;*/
+    border: 2px solid #35a2d1;
+    padding: 9px 9px 9px 9px;
   }
 `;
 
@@ -60,18 +62,29 @@ const Thumbnail = styled.img`
 `;
 
 const About = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: calc(100% - 85px);
   span {
     :first-child {
+      overflow: hidden;
+      height: 22px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       font-size: 1.2rem;
       font-weight: bold;
       color: black;
+      padding-right: 5%;
     }
     :not(:first-child) {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       padding-top: 5px;
-      font-size: 0.6rem;
+      padding-right: 5%;
+      font-size: 0.7rem;
       color: #5c5c5c;
     }
   }
@@ -99,7 +112,9 @@ const LightHouse = styled(GiLighthouse)`
 `;
 
 const Projects = ({ location, history }) => {
-  const { data, loading } = useQuery(GET_USER_PROJECTS_QUERY);
+  const { data, loading } = useQuery(GET_USER_PROJECTS_QUERY, {
+    fetchPolicy: "network-only"
+  });
   return (
     <>
       <Header location={location} history={history} />
@@ -107,10 +122,9 @@ const Projects = ({ location, history }) => {
       <Container>
         <SubtitleWithBtn
           title="PROJECTS"
-          buttonColor={"#64ccf8"}
-          buttonHColor={"#2fbbf7"}
           buttonText="Create a Project"
-          buttonURI="/projects/create"
+          buttonType={"Link"}
+          buttonAction="/projects/create"
         />
         <Underline />
         {loading && <Loading />}

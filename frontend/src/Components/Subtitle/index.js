@@ -5,6 +5,7 @@ const Container = styled.span`
   font-size: 1rem;
   color: #555555;
   margin-bottom: 15px;
+  font-family: "Roboto";
 `;
 
 const Subtitle = ({ title }) => {
