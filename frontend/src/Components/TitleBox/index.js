@@ -10,9 +10,13 @@ const Container = styled.div`
 `;
 
 const Title = styled.span`
+  max-width: 400px;
   font-size: 0.8rem;
   padding-left: 60px;
   color: white;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 
   @media (max-width: 850px) {
     padding-left: 25px;

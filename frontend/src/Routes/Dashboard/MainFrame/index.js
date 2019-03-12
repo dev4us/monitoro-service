@@ -12,7 +12,7 @@ const Container = styled.div`
 const LeftFrame = styled.div`
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 550px;
   height: 100%;
   border-right: 1px solid #dcdcdc;
 `;

@@ -17,7 +17,7 @@ const Container = styled.div`
   flex: 1;
   cursor: pointer;
   border-right: 1px solid #ececec;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   /* Customize website's scrollbar like Mac OS
   Not supports in Firefox and IE */
@@ -283,7 +283,7 @@ const LatestLog = ({ setMsgId }) => {
           ).length === 0 && (
             <NotFound>
               <span>404</span>
-              <span>Not found Result : (</span>
+              <span>Not found Message : (</span>
             </NotFound>
           )}
       </Container>

@@ -64,6 +64,7 @@ export const GET_PROJECT_QUERY = gql`
       error
       project {
         name
+        description
         thumbnail
         messages {
           level
