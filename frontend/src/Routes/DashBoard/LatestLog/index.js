@@ -5,7 +5,7 @@ import isCheck from "../../../Assets/images/isCheck.svg";
 import LevelIcon from "../../../Components/LevelIcon";
 import { Store } from "../../../GlobalState/store";
 
-import { GoMegaphone } from "react-icons/go";
+import { MdSearch } from "react-icons/md";
 
 import { useQuery, useSubscription } from "react-apollo-hooks";
 import {
@@ -16,6 +16,7 @@ import {
 const Container = styled.div`
   flex: 1;
   cursor: pointer;
+  border-right: 1px solid #ececec;
   overflow-y: scroll;
 
   /* Customize website's scrollbar like Mac OS
@@ -111,22 +112,55 @@ const SettingFrame = styled.div`
   height: 45px;
   border-bottom: 1px solid #dcdcdc;
   background: #ececec;
-  padding-right: 5px;
+  padding-right: 15px;
   padding-left: 10px;
 `;
 
-const CountItem = styled.div`
+const SearchBar = styled.div`
   display: flex;
-  align-items: center;
-  color: #ff6666;
-  font-size: 0.8rem;
-  font-weight: bold;
+  height: 25px;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    padding-left: 2px;
+    padding-top: 2px;
+
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    background: white;
+    border-right: 1px solid #ececec;
+  }
+  input {
+    width: 160px;
+    height: 100%;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: none;
+  }
 `;
 
-const Megaphone = styled(GoMegaphone)`
-  font-size: 1rem;
-  color: #ff6666;
-  margin-right: 3px;
+const NotFound = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: #8fc9f5;
+  span {
+    :first-child {
+      font-size: 4rem;
+      margin-bottom: 15px;
+    }
+    :last-child {
+      font-size: 1.2rem;
+    }
+  }
 `;
 
 const LatestLog = () => {
@@ -185,18 +219,17 @@ const LatestLog = () => {
           htmlFor="message_all"
           style={{ border: "1px solid #b4b1b1" }}
         />
-        <CountItem>
-          <Megaphone />
-          {data &&
-            data.GetMessages &&
-            data.GetMessages.messages &&
-            data.GetMessages.messages.length}
-        </CountItem>
-        <input
-          type="text"
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-        />
+        <SearchBar>
+          <div>
+            <MdSearch />
+          </div>
+          <input
+            type="text"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="Using Tag or Message"
+          />
+        </SearchBar>
       </SettingFrame>
       <Container>
         {data &&
@@ -232,6 +265,25 @@ const LatestLog = () => {
                 <div className="contents">- {object.contents}</div>
               </LogMessage>
             ))}
+
+        {data &&
+          data.GetMessages &&
+          data.GetMessages.messages.filter(
+            object =>
+              object.contents.toLowerCase().includes(search.toLowerCase()) ||
+              (object.tags &&
+                object.tags.filter(tagObject =>
+                  tagObject.name.toLowerCase().includes(search.toLowerCase())
+                ).length > 0) ||
+              moment(Number(object.createdAt))
+                .format("YYYY-MM-DD HH:mm:ss")
+                .includes(search)
+          ).length === 0 && (
+            <NotFound>
+              <span>404</span>
+              <span>Not found Result : (</span>
+            </NotFound>
+          )}
       </Container>
     </>
   );
