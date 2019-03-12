@@ -35,11 +35,20 @@ const IndexBtn = styled.div`
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.3s;
+  font-family: "Roboto";
+  color: #5c5c5c;
+
+  &:hover {
+    border-bottom: 3px solid #d8f4ff;
+  }
 
   ${props =>
     props.index === true &&
     css`
       border-bottom: 3px solid #64ccf8;
+      &:hover {
+        border-bottom: 3px solid #64ccf8;
+      }
     `}
 
   :first-child {
