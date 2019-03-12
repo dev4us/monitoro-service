@@ -64,6 +64,16 @@ export const GET_PROJECT_QUERY = gql`
       error
       project {
         name
+        thumbnail
+        messages {
+          level
+          contents
+          createdAt
+          tags {
+            name
+            color
+          }
+        }
       }
     }
   }
@@ -75,9 +85,11 @@ export const GET_MESSAGES_LASTEST_QUERY = gql`
       ok
       error
       messages {
+        id
         contents
         createdAt
         level
+        projectId
         tags {
           name
           color
@@ -144,6 +156,7 @@ export const CREATE_TAG_MUTATION = gql`
 export const SEND_MESSAGES_SUBSCRIPTION = gql`
   subscription SendMessageSubscription {
     SendMessageSubscription {
+      id
       contents
       createdAt
       level

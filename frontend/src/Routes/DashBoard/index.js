@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import Header from "../../Components/Header";
 import TitleBox from "../../Components/TitleBox";
-import LeftFrame from "./LeftFrame";
+import MainFrame from "./MainFrame";
 
 import { GiLighthouse } from "react-icons/gi";
 import { useQuery } from "react-apollo-hooks";
@@ -104,7 +104,7 @@ const Dashboard = ({ location, history }) => {
         <>
           <TitleBox title={data.GetProject.project.name} />
           <Container dashboard={true}>
-            <LeftFrame />
+            <MainFrame />
           </Container>
         </>
       )}

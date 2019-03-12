@@ -163,7 +163,7 @@ const NotFound = styled.div`
   }
 `;
 
-const LatestLog = () => {
+const LatestLog = ({ setMsgId }) => {
   const { state } = useContext(Store);
   const [search, setSearch] = useState("");
 
@@ -179,13 +179,13 @@ const LatestLog = () => {
       }
     }) => {
       try {
-        let messages = client.readQuery({
+        let prevData = client.readQuery({
           query: GET_MESSAGES_LASTEST_QUERY,
           variables: {
             projectId: Number(state.selectedProjectId)
           }
-        }).GetMessages.messages;
-
+        });
+        let messages = prevData.GetMessages.messages;
         if (
           SendMessageSubscription.projectId === Number(state.selectedProjectId)
         ) {
@@ -193,14 +193,16 @@ const LatestLog = () => {
             __typename: "Message"
           });
 
-          delete newMessages.projectId;
           messages.unshift(newMessages);
 
           client.writeQuery({
             query: GET_MESSAGES_LASTEST_QUERY,
             variables: { projectId: Number(state.selectedProjectId) },
             data: {
-              messages
+              GetMessages: {
+                ...prevData.GetMessages,
+                ...messages
+              }
             }
           });
           console.log(messages);
@@ -247,7 +249,7 @@ const LatestLog = () => {
                   .includes(search)
             )
             .map((object, index) => (
-              <LogMessage key={index}>
+              <LogMessage key={index} onClick={() => setMsgId(object.id)}>
                 <TopLine>
                   <CheckBox
                     type="checkbox"

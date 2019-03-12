@@ -2,8 +2,14 @@ import React, { useState } from "react";
 
 import styled, { css } from "styled-components";
 import LatestLog from "../LatestLog";
+import RightFrame from "../RightFrame";
 
 const Container = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+`;
+const LeftFrame = styled.div`
   display: flex;
   flex-direction: column;
   width: 400px;
@@ -51,26 +57,29 @@ const Controller = styled.div`
   border-top: 1px solid #ececec;
 `;
 
-const LeftFrame = () => {
+const MainFrame = () => {
   const [index, setIndex] = useState(1);
-
+  const [selectedMsgId, setMsgId] = useState(0);
   return (
     <Container>
-      <TopBar>
-        <IndexBtn index={index === 1 && true} onClick={() => setIndex(1)}>
-          Recent
-        </IndexBtn>
-        <IndexBtn index={index === 2 && true} onClick={() => setIndex(2)}>
-          2
-        </IndexBtn>
-        <IndexBtn index={index === 3 && true} onClick={() => setIndex(3)}>
-          3
-        </IndexBtn>
-      </TopBar>
-      <LatestLog />
-      <Controller />
+      <LeftFrame>
+        <TopBar>
+          <IndexBtn index={index === 1 && true} onClick={() => setIndex(1)}>
+            Recent
+          </IndexBtn>
+          <IndexBtn index={index === 2 && true} onClick={() => setIndex(2)}>
+            2
+          </IndexBtn>
+          <IndexBtn index={index === 3 && true} onClick={() => setIndex(3)}>
+            3
+          </IndexBtn>
+        </TopBar>
+        <LatestLog setMsgId={setMsgId} />
+        <Controller />
+      </LeftFrame>
+      <RightFrame selectedMsgId={selectedMsgId} />
     </Container>
   );
 };
 
-export default LeftFrame;
+export default MainFrame;
