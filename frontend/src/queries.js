@@ -77,6 +77,7 @@ export const GET_MESSAGES_LASTEST_QUERY = gql`
       messages {
         contents
         createdAt
+        level
         tags {
           name
           color
@@ -131,6 +132,23 @@ export const CREATE_TAG_MUTATION = gql`
       ok
       error
       tag {
+        name
+        color
+      }
+    }
+  }
+`;
+
+// subscription
+
+export const SEND_MESSAGES_SUBSCRIPTION = gql`
+  subscription SendMessageSubscription {
+    SendMessageSubscription {
+      contents
+      createdAt
+      level
+      projectId
+      tags {
         name
         color
       }

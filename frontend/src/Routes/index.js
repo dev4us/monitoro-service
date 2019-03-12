@@ -22,7 +22,7 @@ const LoggedOutRoutes = () => (
 const LoggedInRoutes = () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/dashboard" component={Dashboard} />
+      <Route path="/dashboard" exact component={Dashboard} />
       <Route path="/projects" exact component={Projects} />
       <Route path="/projects/create" component={CreateProjects} />
       <Route path="/projects/settingTag" component={SettingTags} />

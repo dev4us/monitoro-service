@@ -15,7 +15,8 @@ import { useQuery } from "react-apollo-hooks";
 const Container = styled.div`
   display: flex;
   width: 100%;
-  min-height: calc(100% - 100px);
+  /*min-height: calc(100% - 150px);*/
+  height: 100%;
   flex-direction: column;
 
   padding-top: 60px;

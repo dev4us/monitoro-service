@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import Header from "../../Components/Header";
 import TitleBox from "../../Components/TitleBox";
-import MessageLog from "./MessageLog";
+import LeftFrame from "./LeftFrame";
 
 import { GiLighthouse } from "react-icons/gi";
 import { useQuery } from "react-apollo-hooks";
@@ -15,8 +15,7 @@ import { GET_PROJECT_QUERY } from "../../queries";
 const Container = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
-  min-height: calc(100% - 100px);
+  height: calc(100% - 100px);
   flex-direction: column;
 
   padding-top: 60px;
@@ -105,7 +104,7 @@ const Dashboard = ({ location, history }) => {
         <>
           <TitleBox title={data.GetProject.project.name} />
           <Container dashboard={true}>
-            <MessageLog />
+            <LeftFrame />
           </Container>
         </>
       )}

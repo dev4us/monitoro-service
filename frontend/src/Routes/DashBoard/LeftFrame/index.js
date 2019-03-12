@@ -1,13 +1,14 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+
 import styled, { css } from "styled-components";
-import { useQuery } from "react-apollo-hooks";
-import { Store } from "../../../GlobalState/store";
-import { GET_MESSAGES_LASTEST_QUERY } from "../../../queries";
+import LatestLog from "../LatestLog";
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 400px;
   height: 100%;
-  border-right: 1px solid #ececec;
+  border-right: 1px solid #dcdcdc;
 `;
 
 const TopBar = styled.div`
@@ -25,7 +26,7 @@ const IndexBtn = styled.div`
   width: 33.333%;
   height: 40px;
   background: white;
-  border-bottom: 3px solid #f5f5f5;
+  border-bottom: 3px solid white;
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.3s;
@@ -44,19 +45,20 @@ const IndexBtn = styled.div`
   }
 `;
 
-const MessageLog = () => {
-  const [index, setIndex] = useState(1);
-  const { state } = useContext(Store);
+const Controller = styled.div`
+  width: 100%;
+  height: 50px;
+  border-top: 1px solid #ececec;
+`;
 
-  const { data, error } = useQuery(GET_MESSAGES_LASTEST_QUERY, {
-    variables: { projectId: Number(state.selectedProjectId) }
-  });
-  console.log(data, error);
+const LeftFrame = () => {
+  const [index, setIndex] = useState(1);
+
   return (
     <Container>
       <TopBar>
         <IndexBtn index={index === 1 && true} onClick={() => setIndex(1)}>
-          Latest
+          Recent
         </IndexBtn>
         <IndexBtn index={index === 2 && true} onClick={() => setIndex(2)}>
           2
@@ -65,8 +67,10 @@ const MessageLog = () => {
           3
         </IndexBtn>
       </TopBar>
+      <LatestLog />
+      <Controller />
     </Container>
   );
 };
 
-export default MessageLog;
+export default LeftFrame;
