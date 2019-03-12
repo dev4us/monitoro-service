@@ -14,7 +14,6 @@ const LeftFrame = styled.div`
   flex-direction: column;
   width: 550px;
   height: 100%;
-  border-right: 1px solid #dcdcdc;
 `;
 
 const TopBar = styled.div`
@@ -68,10 +67,10 @@ const MainFrame = () => {
             Recent
           </IndexBtn>
           <IndexBtn index={index === 2 && true} onClick={() => setIndex(2)}>
-            2
+            Coming
           </IndexBtn>
           <IndexBtn index={index === 3 && true} onClick={() => setIndex(3)}>
-            3
+            Soon
           </IndexBtn>
         </TopBar>
         <LatestLog setMsgId={setMsgId} />

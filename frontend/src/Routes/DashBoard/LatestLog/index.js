@@ -170,7 +170,7 @@ const LatestLog = ({ setMsgId }) => {
   const { data } = useQuery(GET_MESSAGES_LASTEST_QUERY, {
     variables: { projectId: Number(state.selectedProjectId) }
   });
-  console.log(data);
+
   useSubscription(SEND_MESSAGES_SUBSCRIPTION, {
     onSubscriptionData: ({
       client,
@@ -229,7 +229,7 @@ const LatestLog = ({ setMsgId }) => {
             type="text"
             value={search}
             onChange={e => setSearch(e.target.value)}
-            placeholder="Using Tag or Message"
+            placeholder="Message, Tag, Date"
           />
         </SearchBar>
       </SettingFrame>

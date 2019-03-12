@@ -65,7 +65,9 @@ export const GET_PROJECT_QUERY = gql`
       project {
         name
         description
+        apiKey
         thumbnail
+        createdAt
         messages {
           level
           contents
