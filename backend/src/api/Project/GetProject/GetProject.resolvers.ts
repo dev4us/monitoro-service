@@ -27,13 +27,13 @@ const resolvers: Resolvers = {
             "participants.id = :userId",
             { userId: user.id }
           )
-          .innerJoinAndSelect(
+          .leftJoinAndSelect(
             "project.messages",
             "messages",
             "messages.projectId = :projectId",
             { projectId }
           )
-          .innerJoinAndSelect(
+          .leftJoinAndSelect(
             "messages.tags",
             "tags",
             "tags.projectId = :projectId",

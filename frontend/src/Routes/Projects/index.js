@@ -142,10 +142,10 @@ const Projects = ({ location, history }) => {
           data.GetProjects.projects.map((object, index) => (
             <Project
               key={index}
-              onClick={() => {
+              onClick={async () => {
                 localStorage.setItem("selectedProjectId", object.id);
                 dispatch({
-                  action: "SWITCH_PROJECT",
+                  type: "SWITCH_PROJECT",
                   payload: object.id
                 });
                 history.push("/dashboard");

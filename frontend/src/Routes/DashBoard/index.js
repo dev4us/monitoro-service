@@ -78,7 +78,6 @@ const Dashboard = ({ location, history }) => {
     variables: { projectId: Number(state.selectedProjectId) }
   });
 
-  // console.log(data, error, Number(state.selectedProjectId));
   return (
     <>
       <Header location={location} history={history} />
