@@ -51,6 +51,7 @@ const LogMessage = styled.div`
   height: 70px;
   border-bottom: 1px dashed #dcdcdc;
   padding: 10px 10px 10px 10px;
+  font-family: "Roboto";
 
   .contents {
     margin-top: 7px;
@@ -58,6 +59,17 @@ const LogMessage = styled.div`
     color: #023d80;
     font-weight: bold;
     padding-left: 25px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-right: 30px;
+  }
+
+  .fileName {
+    margin-top: 3px;
+    font-size: 0.3rem;
+    color: #9e9e9e;
+    padding-left: 32px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -265,6 +277,9 @@ const LatestLog = ({ setMsgId }) => {
                   </CreatedAt>
                 </TopLine>
                 <div className="contents">- {object.contents}</div>
+                {object.fileName && object.fileName !== "" && (
+                  <div className="fileName">({object.fileName})</div>
+                )}
               </LogMessage>
             ))}
 
