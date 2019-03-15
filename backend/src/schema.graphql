@@ -6,7 +6,7 @@ type GetMessageResponse {
 }
 
 type Query {
-  GetMessage(projectId: Int!, MessageId: Int!): GetMessageResponse!
+  GetMessage(projectId: Int!, messageId: Int!): GetMessageResponse!
   GetMessages(projectId: Int!): GetMessagesResponse!
   GetProject(projectId: Int!): GetProjectResponse!
   GetProjects: GetProjectsResponse!

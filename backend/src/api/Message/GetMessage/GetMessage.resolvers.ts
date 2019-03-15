@@ -15,7 +15,7 @@ const resolvers: Resolvers = {
         args: GetMessageQueryArgs,
         { req }
       ): Promise<GetMessageResponse> => {
-        const { projectId, MessageId } = args;
+        const { projectId, messageId } = args;
         const { user } = req;
         let msgCount = 0;
 
@@ -25,11 +25,11 @@ const resolvers: Resolvers = {
             .innerJoinAndSelect("message.project", "project")
             .innerJoinAndSelect("project.participants", "user")
             .innerJoinAndSelect("message.tags", "tags")
-            .where("message.id = :msgId", { msgId: MessageId })
+            .where("message.id = :msgId", { msgId: messageId })
             .andWhere("user.id = :userId", { userId: user.id })
             .andWhere("project.id = :projectId", { projectId })
             .getOne();
-
+          console.log(message);
           if (!message) {
             return {
               ok: false,
@@ -40,29 +40,14 @@ const resolvers: Resolvers = {
           }
 
           if (message.tags.length !== 0) {
-            /*const msgCountQuery = await getRepository(Message)
-              .createQueryBuilder("message")
-              .innerJoinAndSelect("message.project", "project")
-              .innerJoinAndSelect("project.participants", "user")
-              .innerJoinAndSelect("message.tags", "tags")
-              .addSelect("COUNT(message.id)", "cnt")
-              .where("user.id = :userId", { userId: user.id })
-              .andWhere("project.id = :projectId", {
-                projectId: message.projectId
-              })
-              .andWhere("tags = :tags", { tags: message.tags })
-              .getCount();*/
-
             msgCount = await getRepository(Message)
               .createQueryBuilder("message")
-              .select("DISTINCT(`id`)")
               .leftJoin("message.tags", "tags")
               .where("message.projectId = :projectId", { projectId })
+              .andWhere("tags.projectId = :projectId", { projectId })
               .andWhere("message.contents = :contents", {
                 contents: message.contents
               })
-              //.andWhere("message.tags = :tags", { tags: message.tags })
-              //.andWhere({})
               .getCount();
           }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-//import { useQuery } from "react-apollo-hooks";
+import { useQuery } from "react-apollo-hooks";
+import { GET_MESSAGE_QUERY } from "../../../queries";
 
 const Container = styled.div`
   display: flex;
@@ -11,8 +12,11 @@ const Container = styled.div`
 
 const MainFrame = styled.div``;
 
-const Detail = ({ selectedMsgId }) => {
-  //const { loading, data } = useQuery();
+const Detail = ({ selectedMsgId, selectedProjectId }) => {
+  const { loading, data } = useQuery(GET_MESSAGE_QUERY, {
+    variables: { projectId: selectedProjectId, messageId: selectedMsgId }
+  });
+  console.log(loading, data);
   return (
     <Container>
       <MainFrame>1</MainFrame>

@@ -88,6 +88,7 @@ export const GET_MESSAGE_QUERY = gql`
     GetMessage(projectId: $projectId, messageId: $messageId) {
       ok
       error
+      msgCount
       message {
         level
         contents

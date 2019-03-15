@@ -140,7 +140,10 @@ const RightFrame = ({ selectedMsgId }) => {
       <TopFrame>
         {(selectedMsgId === 0 || menu === 1) && <Overview data={data} />}
         {selectedMsgId !== 0 && menu === 2 && (
-          <Detail selectedMsgId={selectedMsgId} />
+          <Detail
+            selectedMsgId={selectedMsgId}
+            selectedProjectId={state.selectedProjectId}
+          />
         )}
       </TopFrame>
     </Container>

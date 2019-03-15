@@ -32,7 +32,10 @@ class Message extends BaseEntity {
   projectId: number;
 
   @ManyToMany(type => Tag, tag => tag.messages)
-  @JoinTable()
+  @JoinTable({
+    joinColumns: [{ name: "message_id" }],
+    inverseJoinColumns: [{ name: "tag_id" }]
+  })
   tags: Tag[];
 
   @CreateDateColumn() createdAt: string;
