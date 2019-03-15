@@ -1,0 +1,10 @@
+type GetMessageResponse {
+  ok: Boolean!
+  error: String
+  message: Message
+  msgCount: Int!
+}
+
+type Query {
+  GetMessage(projectId: Int!, MessageId: Int!): GetMessageResponse!
+}

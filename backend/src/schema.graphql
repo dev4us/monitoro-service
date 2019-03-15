@@ -1,16 +1,24 @@
-type GetMessagesResponse {
+type GetMessageResponse {
   ok: Boolean!
   error: String
-  messages: [Message]
+  message: Message
+  msgCount: Int!
 }
 
 type Query {
+  GetMessage(projectId: Int!, MessageId: Int!): GetMessageResponse!
   GetMessages(projectId: Int!): GetMessagesResponse!
   GetProject(projectId: Int!): GetProjectResponse!
   GetProjects: GetProjectsResponse!
   GetTags(projectId: Int!): GetTagsResponse!
   GetProfile: GetProfileResponse!
   User: String!
+}
+
+type GetMessagesResponse {
+  ok: Boolean!
+  error: String
+  messages: [Message]
 }
 
 type SendMessageResponse {

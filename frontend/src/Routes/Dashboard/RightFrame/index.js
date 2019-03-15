@@ -1,11 +1,14 @@
 import React, { useContext, useState } from "react";
 import styled, { css } from "styled-components";
-import moment from "moment";
+
 import { toast } from "react-toastify";
 
 import { Store } from "../../../GlobalState/store";
 import { useQuery } from "react-apollo-hooks";
 import { GET_PROJECT_QUERY } from "../../../queries";
+
+import Overview from "./Overview";
+import Detail from "./Detail";
 
 const Container = styled.div`
   display: flex;
@@ -89,59 +92,6 @@ const TopFrame = styled.div`
   border-bottom-right-radius: 5px;
 `;
 
-const Thumbnail = styled.div`
-  width: 200px;
-  height: 200px;
-  min-width: 200px;
-  min-height: 200px;
-  border: 1px dashed #dcdcdc;
-  margin-right: 15px;
-  background: url(${props => props.bg});
-  background-color: white;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-`;
-
-const TopRightFrame = styled.div`
-  width: 100%;
-  max-width: 600px;
-`;
-
-const ProjectName = styled.div`
-  max-width: 580px;
-  font-family: "Roboto";
-  font-size: 25px;
-  padding-bottom: 10px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  padding: 15px 100px 10px 5px;
-  border-bottom: 1px solid #dcdcdc;
-`;
-
-const ProjectDescription = styled.div`
-  width: 100%;
-  max-width: 580px;
-  max-height: 200px;
-  font-size: 0.8rem;
-
-  word-wrap: break-word;
-  overflow: hidden;
-  padding-right: 5px;
-  padding-left: 10px;
-  font-family: "Roboto";
-  color: #9a9999;
-
-  .index {
-    font-weight: 500;
-    font-size: 0.8rem;
-    margin-top: 15px;
-    margin-bottom: 3px;
-    color: #5c5c5c;
-  }
-`;
-
 const RightFrame = ({ selectedMsgId }) => {
   const { state } = useContext(Store);
   const [menu, setMenu] = useState(2);
@@ -188,26 +138,9 @@ const RightFrame = ({ selectedMsgId }) => {
         </InMenuFrame>
       </MenuFrame>
       <TopFrame>
-        {(selectedMsgId === 0 || menu === 1) && (
-          <>
-            <Thumbnail
-              alt="projectThumbnail"
-              bg={data.GetProject.project.thumbnail}
-            />
-            <TopRightFrame>
-              <ProjectName>{data.GetProject.project.name}</ProjectName>
-              <ProjectDescription>
-                <div className="index">• Registration date</div>
-                {moment(Number(data.GetProject.project.createdAt)).format(
-                  "YYYY-MM-DD HH:mm:ss"
-                )}
-                <div className="index">• API Key</div>
-                {data.GetProject.project.apiKey}
-                <div className="index">• description</div>
-                {data.GetProject.project.description}
-              </ProjectDescription>
-            </TopRightFrame>
-          </>
+        {(selectedMsgId === 0 || menu === 1) && <Overview data={data} />}
+        {selectedMsgId !== 0 && menu === 2 && (
+          <Detail selectedMsgId={selectedMsgId} />
         )}
       </TopFrame>
     </Container>

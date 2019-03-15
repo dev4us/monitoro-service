@@ -83,6 +83,24 @@ export const GET_PROJECT_QUERY = gql`
   }
 `;
 
+export const GET_MESSAGE_QUERY = gql`
+  query getMessage($projectId: Int!, $messageId: Int!) {
+    GetMessage(projectId: $projectId, messageId: $messageId) {
+      ok
+      error
+      message {
+        level
+        contents
+        fileName
+        tags {
+          name
+          color
+        }
+      }
+    }
+  }
+`;
+
 export const GET_MESSAGES_LASTEST_QUERY = gql`
   query getMessages($projectId: Int!) {
     GetMessages(projectId: $projectId) {
