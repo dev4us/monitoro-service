@@ -85,7 +85,7 @@ const TopFrame = styled.div`
   border-bottom: 1px solid #ececec;
   border-left: 1px solid #ececec;
   border-right: 1px solid #ececec;
-  padding: 30px 15px 15px 30px;
+  padding: 30px 30px 30px 30px;
   background: white;
   border-top-right-radius: 5px;
   border-bottom-left-radius: 5px;

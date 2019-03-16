@@ -29,7 +29,7 @@ const resolvers: Resolvers = {
             .andWhere("user.id = :userId", { userId: user.id })
             .andWhere("project.id = :projectId", { projectId })
             .getOne();
-          console.log(message);
+
           if (!message) {
             return {
               ok: false,

@@ -54,6 +54,7 @@ const LogMessage = styled.div`
   font-family: "Roboto";
 
   .contents {
+    max-width: 358px;
     margin-top: 7px;
     font-size: 0.8rem;
     color: #023d80;

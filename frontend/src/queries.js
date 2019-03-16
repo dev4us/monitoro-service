@@ -93,6 +93,7 @@ export const GET_MESSAGE_QUERY = gql`
         level
         contents
         fileName
+        createdAt
         tags {
           name
           color
