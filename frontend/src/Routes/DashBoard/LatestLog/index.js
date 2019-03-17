@@ -176,7 +176,7 @@ const NotFound = styled.div`
   }
 `;
 
-const LatestLog = ({ setMsgId }) => {
+const LatestLog = ({ setMsgId, setMenu }) => {
   const { state } = useContext(Store);
   const [search, setSearch] = useState("");
 
@@ -262,7 +262,13 @@ const LatestLog = ({ setMsgId }) => {
                   .includes(search)
             )
             .map((object, index) => (
-              <LogMessage key={index} onClick={() => setMsgId(object.id)}>
+              <LogMessage
+                key={index}
+                onClick={() => {
+                  setMsgId(object.id);
+                  setMenu(2);
+                }}
+              >
                 <TopLine>
                   <CheckBox
                     type="checkbox"

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import styled, { css } from "styled-components";
 
 import { toast } from "react-toastify";
@@ -116,9 +116,8 @@ const TopFrame = styled.div`
   border-bottom-right-radius: 5px;
 `;
 
-const RightFrame = ({ selectedMsgId }) => {
+const RightFrame = ({ selectedMsgId, menu, setMenu }) => {
   const { state } = useContext(Store);
-  const [menu, setMenu] = useState(2);
 
   const { loading, data } = useQuery(GET_PROJECT_QUERY, {
     variables: { projectId: Number(state.selectedProjectId) },

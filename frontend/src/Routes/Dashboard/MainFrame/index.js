@@ -69,6 +69,8 @@ const Controller = styled.div`
 const MainFrame = () => {
   const [index, setIndex] = useState(1);
   const [selectedMsgId, setMsgId] = useState(0);
+  const [menu, setMenu] = useState(2);
+
   return (
     <Container>
       <LeftFrame>
@@ -83,10 +85,10 @@ const MainFrame = () => {
             Soon
           </IndexBtn>
         </TopBar>
-        <LatestLog setMsgId={setMsgId} />
+        <LatestLog setMsgId={setMsgId} setMenu={setMenu} />
         <Controller />
       </LeftFrame>
-      <RightFrame selectedMsgId={selectedMsgId} />
+      <RightFrame selectedMsgId={selectedMsgId} menu={menu} setMenu={setMenu} />
     </Container>
   );
 };

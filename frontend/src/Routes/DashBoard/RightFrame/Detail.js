@@ -53,6 +53,7 @@ const AboutLine = styled.div`
       font-size: 1rem;
       font-weight: bold;
       margin-bottom: 5px;
+      padding-right: 15px;
     }
     :nth-child(3) {
       color: #5c5c5c;
@@ -108,7 +109,7 @@ const LogLine = styled.div`
   margin-bottom: 8px;
 
   span {
-    width: 282px;
+    width: 275px;
     height: 18px;
     white-space: nowrap;
     text-overflow: ellipsis;
