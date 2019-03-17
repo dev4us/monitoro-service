@@ -40,7 +40,7 @@ const resolvers: Resolvers = {
 
         const messages = await getRepository(Message)
           .createQueryBuilder("message")
-          .innerJoinAndSelect(
+          .leftJoinAndSelect(
             "message.tags",
             "tags",
             "tags.projectId = :projectId",

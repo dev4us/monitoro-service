@@ -24,7 +24,7 @@ const resolvers: Resolvers = {
             .createQueryBuilder("message")
             .innerJoinAndSelect("message.project", "project")
             .innerJoinAndSelect("project.participants", "user")
-            .innerJoinAndSelect("message.tags", "tags")
+            .leftJoinAndSelect("message.tags", "tags")
             .where("message.id = :msgId", { msgId: messageId })
             .andWhere("user.id = :userId", { userId: user.id })
             .andWhere("project.id = :projectId", { projectId })
