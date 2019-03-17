@@ -12,7 +12,8 @@ const Container = styled.div`
 const LeftFrame = styled.div`
   display: flex;
   flex-direction: column;
-  width: 550px;
+  width: 400px;
+  min-width: 400px;
   height: 100%;
 `;
 

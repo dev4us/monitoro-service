@@ -23,11 +23,6 @@ const Container = styled.div`
   padding-left: 25%;
   padding-right: 25%;
 
-  @media (max-width: 850px) {
-    padding-left: 5%;
-    padding-right: 5%;
-  }
-
   ${props =>
     props.dashboard === true &&
     css`

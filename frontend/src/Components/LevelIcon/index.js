@@ -28,9 +28,16 @@ const Container = styled.div`
     css`
       background: #ff4d00;
     `};
+
+    ${props =>
+      props.inDetail &&
+      css`
+        margin-right: 8px;
+        margin-bottom: 5px;
+      `}
 `;
 
-const LevelIcon = ({ level }) => {
+const LevelIcon = ({ level, inDetail }) => {
   let levelText = "";
 
   if (level.toLowerCase() === "notice") {
@@ -40,7 +47,11 @@ const LevelIcon = ({ level }) => {
   } else if (level.toLowerCase() === "danger") {
     levelText = "Danger";
   }
-  return <Container level={levelText}>{levelText}</Container>;
+  return (
+    <Container level={levelText} inDetail={inDetail}>
+      {levelText}
+    </Container>
+  );
 };
 
 export default LevelIcon;
