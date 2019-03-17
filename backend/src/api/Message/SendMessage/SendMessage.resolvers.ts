@@ -41,14 +41,15 @@ const resolvers: Resolvers = {
                 "project.id = :projectId",
                 { projectId: project.id }
               )
-              .where({ name: attachTags.attachTag })
+              .where({ name: attachTags.name })
               .getOne();
 
             if (existTag) {
               return existTag;
             } else {
               const newTag = await Tag.create({
-                name: attachTags.attachTag,
+                name: attachTags.name,
+                color: attachTags.color || undefined,
                 project
               }).save();
               return newTag;

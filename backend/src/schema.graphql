@@ -27,7 +27,8 @@ type SendMessageResponse {
 }
 
 input attachTags {
-  attachTag: String!
+  name: String!
+  color: String
 }
 
 type Mutation {
