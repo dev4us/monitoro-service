@@ -12,7 +12,7 @@ type Mutation {
   SendMessage(
     level: String!
     contents: String!
-    fileName: String
+    location: String
     apiKey: String!
     tags: [attachTags]
   ): SendMessageResponse!

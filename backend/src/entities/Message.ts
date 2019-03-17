@@ -22,7 +22,7 @@ class Message extends BaseEntity {
   @Column({ nullable: false })
   contents: string;
 
-  @Column({ nullable: false })
+  @Column({ nullable: true })
   location: string;
 
   @ManyToOne(type => Project, project => project.messages)
