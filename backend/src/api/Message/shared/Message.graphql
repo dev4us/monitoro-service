@@ -2,7 +2,7 @@ type Message {
   id: Int!
   level: String
   contents: String!
-  fileName: String
+  location: String
   project: Project
   projectId: Int
   tags: [Tag]

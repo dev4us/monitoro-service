@@ -70,7 +70,7 @@ export const GET_PROJECT_QUERY = gql`
         createdAt
         messages {
           level
-          fileName
+          location
           contents
           createdAt
           tags {
@@ -92,7 +92,7 @@ export const GET_MESSAGE_QUERY = gql`
       message {
         level
         contents
-        fileName
+        location
         createdAt
         tags {
           name
@@ -112,7 +112,7 @@ export const GET_MESSAGES_LASTEST_QUERY = gql`
         id
         contents
         createdAt
-        fileName
+        location
         level
         projectId
         tags {
@@ -186,7 +186,7 @@ export const SEND_MESSAGES_SUBSCRIPTION = gql`
       createdAt
       level
       projectId
-      fileName
+      location
       tags {
         name
         color
