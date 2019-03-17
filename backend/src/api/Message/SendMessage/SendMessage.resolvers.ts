@@ -32,45 +32,40 @@ const resolvers: Resolvers = {
         }
 
         if (tags) {
-          let afterTag: Tag[] = [];
+          const promiseMap = tags.map(async (attachTags, index, array) => {
+            const existTag = await getRepository(Tag)
+              .createQueryBuilder("tag")
+              .innerJoinAndSelect(
+                "tag.project",
+                "project",
+                "project.id = :projectId",
+                { projectId: project.id }
+              )
+              .where({ name: attachTags.attachTag })
+              .getOne();
 
-          Promise.all(
-            tags.map(async (attachTags, index, array) => {
-              const existTag = await getRepository(Tag)
-                .createQueryBuilder("tag")
-                .innerJoinAndSelect(
-                  "tag.project",
-                  "project",
-                  "project.id = :projectId",
-                  { projectId: project.id }
-                )
-                .where({ name: attachTags.attachTag })
-                .getOne();
+            if (existTag) {
+              return existTag;
+            } else {
+              const newTag = await Tag.create({
+                name: attachTags.attachTag,
+                project
+              }).save();
+              return newTag;
+            }
+          });
 
-              if (existTag) {
-                afterTag.push(existTag);
-              } else {
-                const newTag = await Tag.create({
-                  name: attachTags.attachTag,
-                  project
-                }).save();
+          const getNewTags = await Promise.all(promiseMap);
 
-                afterTag.push(newTag);
-              }
+          const newMessage = await Message.create({
+            ...notNull,
+            tags: getNewTags,
+            project
+          }).save();
 
-              if (index === array.length - 1) {
-                const newMessage = await Message.create({
-                  ...notNull,
-                  tags: afterTag,
-                  project
-                }).save();
-
-                pubSub.publish("newMessage", {
-                  SendMessageSubscription: newMessage
-                });
-              }
-            })
-          );
+          pubSub.publish("newMessage", {
+            SendMessageSubscription: newMessage
+          });
         } else {
           const newMessage = await Message.create({
             ...notNull,
