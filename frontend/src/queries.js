@@ -99,6 +99,12 @@ export const GET_MESSAGE_QUERY = gql`
           color
         }
       }
+      similarMsg {
+        level
+        contents
+        location
+        createdAt
+      }
     }
   }
 `;

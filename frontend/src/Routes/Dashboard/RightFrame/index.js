@@ -113,7 +113,7 @@ const Menu = styled.div`
 `;
 
 const TopFrame = styled.div`
-  display: flex;
+  display: -webkit-box;
   flex-direction: row;
   width: 100%;
   min-width: 650px;

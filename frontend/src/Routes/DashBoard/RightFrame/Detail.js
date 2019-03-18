@@ -133,6 +133,56 @@ const LogLine = styled.div`
   }
 `;
 
+const HistoryBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 65px;
+  padding: 10px;
+  margin-bottom: 5px;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  cursor: pointer;
+
+  @media (max-width: 475px) {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 70px;
+  }
+
+  span {
+    :first-child {
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 0.8rem;
+      justify-content: space-between;
+      align-items: center;
+      height: 20px;
+      padding-left: 2px;
+
+      span {
+        margin-bottom: unset;
+      }
+    }
+    :last-child {
+      font-size: 0.8rem;
+    }
+  }
+`;
+
+const LocationData = styled.span`
+  color: #bdbbbb;
+  margin-top: 5px;
+  padding-left: 4px;
+
+  @media (max-width: 475px) {
+    padding-left: 3px;
+  }
+`;
+
+const SimilarMsg = styled.span`
+  width: 200px;
+`;
+
 const Detail = ({ selectedMsgId, selectedProjectId }) => {
   const { loading, data } = useQuery(GET_MESSAGE_QUERY, {
     variables: {
@@ -191,10 +241,27 @@ const Detail = ({ selectedMsgId, selectedProjectId }) => {
             <span>History</span>
           </LogLine>
           <InfoBox
-            title="Recent Similar Messages"
+            title={`Recent Similar Messages (${data.GetMessage.msgCount})`}
             maxHeight="320px"
             icon="timer"
-          />
+          >
+            {data.GetMessage.similarMsg &&
+              data.GetMessage.similarMsg.map((object, index) => (
+                <HistoryBox key={index}>
+                  <span>
+                    <SimilarMsg>{object.contents}</SimilarMsg>
+                    <DetailTime>
+                      {moment(Number(object.createdAt)).format(
+                        "YYYY-MM-DD HH:mm:ss"
+                      )}
+                    </DetailTime>
+                  </span>
+                  {object.location && (
+                    <LocationData>{object.location}</LocationData>
+                  )}
+                </HistoryBox>
+              ))}
+          </InfoBox>
         </LogFrame>
       </MainFrame>
     </Container>
