@@ -123,6 +123,7 @@ const SettingFrame = styled.div`
   align-items: center;
   width: 100%;
   height: 45px;
+  min-height: 45px;
   border-bottom: 1px solid #dcdcdc;
   background: #ececec;
   padding-right: 15px;

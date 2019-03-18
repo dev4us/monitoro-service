@@ -26,6 +26,7 @@ const LeftFrame = styled.div`
     width: 100%;
     min-width: unset;
     min-height: 600px;
+    max-height: 600px;
   }
 `;
 
@@ -33,6 +34,7 @@ const TopBar = styled.div`
   display: flex;
   width: 100%;
   height: 50px;
+  min-height: 50px;
   background: #f5f5f5;
   padding-top: 10px;
 `;
