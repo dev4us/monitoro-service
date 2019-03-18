@@ -17,8 +17,8 @@ const Thumbnail = styled.div`
 `;
 
 const TopRightFrame = styled.div`
-  width: 100%;
-  max-width: 600px;
+  width: 60%;
+  min-width: 310px;
 `;
 
 const ProjectName = styled.div`

@@ -8,7 +8,7 @@ import Projects from "./Projects";
 import CreateProjects from "./Projects/Create/CreateProject";
 import SettingTags from "./Projects/Create/SettingTags";
 
-import Dashboard from "./Dashboard";
+import DashBoard from "./DashBoard";
 
 const LoggedOutRoutes = () => (
   <BrowserRouter>
@@ -22,7 +22,7 @@ const LoggedOutRoutes = () => (
 const LoggedInRoutes = () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/dashboard" exact component={Dashboard} />
+      <Route path="/dashboard" exact component={DashBoard} />
       <Route path="/projects" exact component={Projects} />
       <Route path="/projects/create" component={CreateProjects} />
       <Route path="/projects/settingTag" component={SettingTags} />

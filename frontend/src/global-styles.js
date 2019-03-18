@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
   html, body, #root{
     width:100%;
     height:100%;
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI","Roboto","Helvetica Neue",Arial,sans-serif;
+    font-family: -apple-system, system-ui,BlinkMacSystemFont,"Segoe UI","Roboto","Helvetica Neue",Arial,sans-serif;
   }
   * {
     box-sizing: border-box;

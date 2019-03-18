@@ -99,6 +99,7 @@ const LogFrame = styled.div`
   min-width: 250px;
   width: 50%;
   padding-left: 3%;
+  padding-right: 3%;
 
   @media (max-width: 995px) {
     width: 100%;

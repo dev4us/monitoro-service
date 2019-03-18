@@ -19,6 +19,7 @@ const Container = styled.div`
   padding-right: 15px;
   background: #f5f5f5;
   overflow-y: auto;
+  /* min-width: 640px;*/
 
   /* total width */
   &::-webkit-scrollbar {
@@ -50,6 +51,7 @@ const MenuFrame = styled.div`
   min-height: 50px;
   background: #f5f5f5;
   padding-top: 11px;
+  min-width: 650px;
 `;
 
 const InMenuFrame = styled.div`
@@ -102,10 +104,10 @@ const Menu = styled.div`
 `;
 
 const TopFrame = styled.div`
-  display: -webkit-box;
+  display: flex;
   flex-direction: row;
   width: 100%;
-  /*height: 300px;*/
+  min-width: 650px;
   border-bottom: 1px solid #ececec;
   border-left: 1px solid #ececec;
   border-right: 1px solid #ececec;
