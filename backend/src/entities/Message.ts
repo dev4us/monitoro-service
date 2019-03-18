@@ -9,6 +9,7 @@ import {
   JoinTable
 } from "typeorm";
 
+import { levelOption } from "src/types/types";
 import Project from "./Project";
 import Tag from "./Tag";
 
@@ -16,8 +17,8 @@ import Tag from "./Tag";
 class Message extends BaseEntity {
   @PrimaryGeneratedColumn() id: number;
 
-  @Column({ nullable: true })
-  level: string;
+  @Column({ nullable: true, enum: ["NOTICE", "WARNING", "DEBUG", "DANGER"] })
+  level: levelOption;
 
   @Column({ nullable: false })
   contents: string;

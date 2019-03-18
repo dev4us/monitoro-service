@@ -31,8 +31,15 @@ input attachTags {
   color: String
 }
 
+enum levelOption {
+  NOTICE
+  WARNING
+  DEBUG
+  DANGER
+}
+
 type Mutation {
-  SendMessage(level: String!, contents: String!, location: String, apiKey: String!, tags: [attachTags]): SendMessageResponse!
+  SendMessage(level: levelOption!, contents: String!, location: String, apiKey: String!, tags: [attachTags]): SendMessageResponse!
   CreateProject(projectName: String!, description: String, thumbnail: String): CreateProjectResponse!
   CreateTag(projectId: Int!, name: String!, color: String): CreateTagResponse!
   SignIn(userEmail: String!, userName: String!, profileImage: String): SignInResponse!

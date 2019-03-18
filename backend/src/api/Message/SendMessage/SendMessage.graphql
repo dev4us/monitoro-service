@@ -8,9 +8,16 @@ input attachTags {
   color: String
 }
 
+enum levelOption {
+  NOTICE
+  WARNING
+  DEBUG
+  DANGER
+}
+
 type Mutation {
   SendMessage(
-    level: String!
+    level: levelOption!
     contents: String!
     location: String
     apiKey: String!
