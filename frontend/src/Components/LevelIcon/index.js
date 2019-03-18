@@ -18,6 +18,11 @@ const Container = styled.div`
     css`
       background: #10c71a;
     `}
+    ${props =>
+      props.level === "Debug" &&
+      css`
+        background: #c762ce;
+      `}    
   ${props =>
     props.level === "Warning" &&
     css`
@@ -40,11 +45,13 @@ const Container = styled.div`
 const LevelIcon = ({ level, inDetail }) => {
   let levelText = "";
 
-  if (level.toLowerCase() === "notice") {
+  if (level.toUpperCase() === "NOTICE") {
     levelText = "Notice";
-  } else if (level.toLowerCase() === "warning") {
+  } else if (level.toUpperCase() === "DEBUG") {
+    levelText = "Debug";
+  } else if (level.toUpperCase() === "WARNING") {
     levelText = "Warning";
-  } else if (level.toLowerCase() === "danger") {
+  } else if (level.toUpperCase() === "DANGER") {
     levelText = "Danger";
   }
   return (
