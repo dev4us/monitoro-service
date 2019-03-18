@@ -36,6 +36,7 @@ const AboutFrame = styled.div`
 const AboutLine = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
   position: relative;
   border-bottom: 1px solid #dcdcdc;
@@ -43,24 +44,31 @@ const AboutLine = styled.div`
   margin-bottom: 8px;
 
   span {
-    :nth-child(2) {
-      width: 275px;
-      height: 18px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      color: #023d80;
-      font-size: 1rem;
-      font-weight: bold;
-      margin-bottom: 5px;
-      padding-right: 15px;
-    }
-    :nth-child(3) {
-      color: #5c5c5c;
-      font-size: 0.6rem;
-      margin-bottom: 5px;
+    :first-child {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
     }
   }
+`;
+
+const DetailName = styled.span`
+  width: 275px;
+  height: 18px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #023d80;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  padding-right: 15px;
+`;
+
+const DetailTime = styled.span`
+  color: #5c5c5c;
+  font-size: 0.6rem;
+  margin-bottom: 5px;
 `;
 
 const TagFrame = styled.div`
@@ -142,13 +150,19 @@ const Detail = ({ selectedMsgId, selectedProjectId }) => {
       <MainFrame>
         <AboutFrame>
           <AboutLine>
-            <LevelIcon level={data.GetMessage.message.level} inDetail={true} />
-            <span> {data.GetMessage.message.contents}</span>
             <span>
+              <LevelIcon
+                level={data.GetMessage.message.level}
+                inDetail={true}
+              />
+              <DetailName> {data.GetMessage.message.contents}</DetailName>
+            </span>
+
+            <DetailTime>
               {moment(Number(data.GetMessage.message.createdAt)).format(
                 "YYYY-MM-DD HH:mm:ss"
               )}
-            </span>
+            </DetailTime>
           </AboutLine>
           <InfoBox title="Full Message" maxHeight="200px" icon="info">
             {data.GetMessage.message.contents}
