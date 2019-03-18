@@ -8,13 +8,25 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
+
+  @media (max-width: 550px) {
+    flex-direction: column;
+  }
 `;
+
 const LeftFrame = styled.div`
   display: flex;
   flex-direction: column;
   width: 400px;
   min-width: 400px;
   height: 100%;
+
+  @media (max-width: 550px) {
+    order: 2;
+    width: 100%;
+    min-width: unset;
+    min-height: 600px;
+  }
 `;
 
 const TopBar = styled.div`

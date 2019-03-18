@@ -21,6 +21,11 @@ const Container = styled.div`
   overflow-y: auto;
   /* min-width: 640px;*/
 
+  @media (max-width: 550px) {
+    order: 1;
+    padding: unset;
+  }
+
   /* total width */
   &::-webkit-scrollbar {
     background-color: #fff;
@@ -52,6 +57,10 @@ const MenuFrame = styled.div`
   background: #f5f5f5;
   padding-top: 11px;
   min-width: 650px;
+
+  @media (max-width: 550px) {
+    min-width: unset;
+  }
 `;
 
 const InMenuFrame = styled.div`
@@ -116,6 +125,12 @@ const TopFrame = styled.div`
   border-top-right-radius: 5px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+
+  @media (max-width: 550px) {
+    min-width: unset;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const RightFrame = ({ selectedMsgId, menu, setMenu }) => {

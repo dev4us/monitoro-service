@@ -29,6 +29,10 @@ const Container = styled.div`
       flex-direction: column;
       padding: unset;
     `}
+
+  @media (max-width: 550px) {
+    height: unset;
+  }
 `;
 
 const NotFound = styled.div`

@@ -21,6 +21,10 @@ const Title = styled.span`
   @media (max-width: 850px) {
     padding-left: 25px;
   }
+
+  @media (max-width: 550px) {
+    max-width: 300px;
+  }
 `;
 
 const TitleBox = ({ title }) => {
