@@ -3,6 +3,7 @@ type GetMessageResponse {
   error: String
   message: Message
   msgCount: Int!
+  similarMsg: [Message]
 }
 
 type Query {

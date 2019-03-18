@@ -18,6 +18,7 @@ const resolvers: Resolvers = {
         const { projectId, messageId } = args;
         const { user } = req;
         let msgCount = 0;
+        let similarMsg;
 
         try {
           const message = await getRepository(Message)
@@ -35,7 +36,8 @@ const resolvers: Resolvers = {
               ok: false,
               error: "Can't Found Message's Data",
               message: null,
-              msgCount
+              msgCount,
+              similarMsg: null
             };
           }
 
@@ -49,20 +51,33 @@ const resolvers: Resolvers = {
                 contents: message.contents
               })
               .getCount();
+
+            similarMsg = await getRepository(Message)
+              .createQueryBuilder("message")
+              .leftJoin("message.tags", "tags")
+              .where("message.projectId = :projectId", { projectId })
+              .andWhere("tags.projectId = :projectId", { projectId })
+              .andWhere("message.contents = :contents", {
+                contents: message.contents
+              })
+              .orderBy("message.createdAt", "DESC")
+              .getMany();
           }
 
           return {
             ok: true,
             error: null,
             message,
-            msgCount
+            msgCount,
+            similarMsg: similarMsg || null
           };
         } catch (error) {
           return {
             ok: false,
             error: error.message,
             message: null,
-            msgCount
+            msgCount: 0,
+            similarMsg: null
           };
         }
       }
