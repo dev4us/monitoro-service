@@ -68,6 +68,12 @@ const DetailName = styled.span`
 const DetailTime = styled.span`
   color: #5c5c5c;
   font-size: 0.6rem;
+  margin-bottom: 5px;
+`;
+
+const DetailTimeInHistory = styled.span`
+  color: #5c5c5c;
+  font-size: 0.7rem !important;
 `;
 
 const TagFrame = styled.div`
@@ -155,7 +161,7 @@ const HistoryBox = styled.div`
       font-size: 0.8rem;
       justify-content: space-between;
       align-items: center;
-      height: 12px;
+      height: 14px;
       padding-left: 2px;
     }
     :last-child {
@@ -184,6 +190,9 @@ const SimilarMsg = styled.span`
 
   @media (max-width: 1490px) {
     margin-bottom: 5px;
+  }
+  @media (max-width: 995px) {
+    margin-bottom: unset;
   }
 `;
 
@@ -254,11 +263,11 @@ const Detail = ({ selectedMsgId, selectedProjectId }) => {
                 <HistoryBox key={index}>
                   <span>
                     <SimilarMsg>{object.contents}</SimilarMsg>
-                    <DetailTime>
+                    <DetailTimeInHistory>
                       {moment(Number(object.createdAt)).format(
                         "YYYY-MM-DD HH:mm:ss"
                       )}
-                    </DetailTime>
+                    </DetailTimeInHistory>
                   </span>
                   {object.location && (
                     <LocationData>{object.location}</LocationData>
