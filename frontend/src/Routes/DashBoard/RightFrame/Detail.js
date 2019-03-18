@@ -68,7 +68,6 @@ const DetailName = styled.span`
 const DetailTime = styled.span`
   color: #5c5c5c;
   font-size: 0.6rem;
-  margin-bottom: 5px;
 `;
 
 const TagFrame = styled.div`
@@ -143,7 +142,7 @@ const HistoryBox = styled.div`
   border-radius: 5px;
   cursor: pointer;
 
-  @media (max-width: 475px) {
+  @media (max-width: 1490px) {
     flex-direction: column;
     justify-content: space-between;
     height: 70px;
@@ -156,12 +155,8 @@ const HistoryBox = styled.div`
       font-size: 0.8rem;
       justify-content: space-between;
       align-items: center;
-      height: 20px;
+      height: 12px;
       padding-left: 2px;
-
-      span {
-        margin-bottom: unset;
-      }
     }
     :last-child {
       font-size: 0.8rem;
@@ -171,16 +166,25 @@ const HistoryBox = styled.div`
 
 const LocationData = styled.span`
   color: #bdbbbb;
-  margin-top: 5px;
   padding-left: 4px;
+  margin-top: 10px;
 
-  @media (max-width: 475px) {
+  @media (max-width: 1490px) {
     padding-left: 3px;
   }
 `;
 
 const SimilarMsg = styled.span`
-  width: 200px;
+  /* width: 200px;*/
+  display: block !important;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 260px;
+  text-overflow: ellipsis;
+
+  @media (max-width: 1490px) {
+    margin-bottom: 5px;
+  }
 `;
 
 const Detail = ({ selectedMsgId, selectedProjectId }) => {
