@@ -146,6 +146,19 @@ export const GET_FREQUENCY_LEVELS_QUERY = gql`
   }
 `;
 
+export const GET_SIMILAR_MESSAGE_QUERY = gql`
+  query getSimilarMessagesQuery($projectId: Int!, $msgId: Int!) {
+    GetSimilarMessages(projectId: $projectId, msgId: $msgId) {
+      ok
+      error
+      msgCount {
+        date
+        count
+      }
+    }
+  }
+`;
+
 // Mutation
 export const SIGN_IN_GOOGLE = gql`
   mutation signInGoogle(

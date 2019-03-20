@@ -10,6 +10,7 @@ import { GET_PROJECT_QUERY } from "../../../queries";
 import Overview from "./Overview";
 import Detail from "./Detail";
 import LevelGraph from "./LevelGraph";
+import SimilarMsgGraph from "./SimilarMsgGraph";
 
 const Container = styled.div`
   display: flex;
@@ -195,7 +196,10 @@ const RightFrame = ({ selectedMsgId, menu, setMenu }) => {
         )}
       </TopFrame>
       <BottomFrame>
-        <LevelGraph>1</LevelGraph>
+        {(selectedMsgId === 0 || menu === 1) && <LevelGraph />}
+        {selectedMsgId !== 0 && menu === 2 && (
+          <SimilarMsgGraph selectedMsgId={selectedMsgId} />
+        )}
       </BottomFrame>
     </Container>
   );
