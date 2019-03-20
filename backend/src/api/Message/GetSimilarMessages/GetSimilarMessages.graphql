@@ -1,0 +1,14 @@
+type GetSimilarMessagesResponse {
+  ok: Boolean!
+  error: String
+  msgCount: [Option]
+}
+
+type Option {
+  count: Int!
+  date: String!
+}
+
+type Query {
+  GetSimilarMessages(projectId: Int!, msgId: Int!): GetSimilarMessagesResponse!
+}

@@ -16,6 +16,7 @@ type Query {
   GetFrequencyLevels(projectId: Int!): GetFrequencyLevelsResponse!
   GetMessage(projectId: Int!, messageId: Int!): GetMessageResponse!
   GetMessages(projectId: Int!): GetMessagesResponse!
+  GetSimilarMessages(projectId: Int!, msgId: Int!): GetSimilarMessagesResponse!
   GetProject(projectId: Int!): GetProjectResponse!
   GetProjects: GetProjectsResponse!
   GetTags(projectId: Int!): GetTagsResponse!
@@ -35,6 +36,17 @@ type GetMessagesResponse {
   ok: Boolean!
   error: String
   messages: [Message]
+}
+
+type GetSimilarMessagesResponse {
+  ok: Boolean!
+  error: String
+  msgCount: [Option]
+}
+
+type Option {
+  count: Int!
+  date: String!
 }
 
 type SendMessageResponse {

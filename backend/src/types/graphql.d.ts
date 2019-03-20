@@ -1,10 +1,11 @@
-export const typeDefs = ["type GetFrequencyLevelsResponse {\n  ok: Boolean!\n  error: String\n  frequencyLevels: [LevelOption]\n}\n\ntype LevelOption {\n  notice: String!\n  debug: String!\n  warning: String!\n  danger: String!\n  date: String!\n}\n\ntype Query {\n  GetFrequencyLevels(projectId: Int!): GetFrequencyLevelsResponse!\n  GetMessage(projectId: Int!, messageId: Int!): GetMessageResponse!\n  GetMessages(projectId: Int!): GetMessagesResponse!\n  GetProject(projectId: Int!): GetProjectResponse!\n  GetProjects: GetProjectsResponse!\n  GetTags(projectId: Int!): GetTagsResponse!\n  GetProfile: GetProfileResponse!\n  User: String!\n}\n\ntype GetMessageResponse {\n  ok: Boolean!\n  error: String\n  message: Message\n  msgCount: Int!\n  similarMsg: [Message]\n}\n\ntype GetMessagesResponse {\n  ok: Boolean!\n  error: String\n  messages: [Message]\n}\n\ntype SendMessageResponse {\n  ok: Boolean!\n  error: String\n}\n\ninput attachTags {\n  name: String!\n  color: String\n}\n\nenum levelOption {\n  NOTICE\n  WARNING\n  DEBUG\n  DANGER\n}\n\ntype Mutation {\n  SendMessage(level: levelOption!, contents: String!, location: String, apiKey: String!, tags: [attachTags]): SendMessageResponse!\n  CreateProject(projectName: String!, description: String, thumbnail: String): CreateProjectResponse!\n  CreateTag(projectId: Int!, name: String!, color: String): CreateTagResponse!\n  SignIn(userEmail: String!, userName: String!, profileImage: String): SignInResponse!\n}\n\ntype Subscription {\n  SendMessageSubscription: Message\n  CreateTagSubscription: Tag\n}\n\ntype Message {\n  id: Int!\n  level: String\n  contents: String!\n  location: String\n  project: Project\n  projectId: Int\n  tags: [Tag]\n  createdAt: String!\n}\n\ntype CreateProjectResponse {\n  ok: Boolean!\n  error: String\n  project: Project\n}\n\ntype GetProjectResponse {\n  ok: Boolean!\n  error: String\n  project: Project\n}\n\ntype GetProjectsResponse {\n  ok: Boolean!\n  error: String\n  projects: [Project]\n}\n\ntype Project {\n  id: Int!\n  name: String!\n  thumbnail: String\n  description: String\n  participants: [User]!\n  admin: User\n  messages: [Message]\n  tags: [Tag]\n  apiKey: String!\n  createdAt: String!\n  updatedAt: String\n}\n\ntype CreateTagResponse {\n  ok: Boolean!\n  error: String\n  tag: Tag\n}\n\ntype GetTagsResponse {\n  ok: Boolean!\n  error: String\n  tags: [Tag]\n}\n\ntype Tag {\n  id: Int!\n  name: String!\n  color: String\n  project: Project!\n  projectId: Int\n  createdAt: String!\n  updatedAt: String\n}\n\ntype GetProfileResponse {\n  ok: Boolean!\n  error: String\n  user: User\n}\n\ntype User {\n  id: Int!\n  userName: String!\n  userEmail: String!\n  profileImage: String\n  innerProjects: [Project]\n  manages: [Project]\n  createdAt: String!\n  updatedAt: String\n}\n\ntype SignInResponse {\n  ok: Boolean!\n  error: String\n  token: String\n}\n"];
+export const typeDefs = ["type GetFrequencyLevelsResponse {\n  ok: Boolean!\n  error: String\n  frequencyLevels: [LevelOption]\n}\n\ntype LevelOption {\n  notice: String!\n  debug: String!\n  warning: String!\n  danger: String!\n  date: String!\n}\n\ntype Query {\n  GetFrequencyLevels(projectId: Int!): GetFrequencyLevelsResponse!\n  GetMessage(projectId: Int!, messageId: Int!): GetMessageResponse!\n  GetMessages(projectId: Int!): GetMessagesResponse!\n  GetSimilarMessages(projectId: Int!, msgId: Int!): GetSimilarMessagesResponse!\n  GetProject(projectId: Int!): GetProjectResponse!\n  GetProjects: GetProjectsResponse!\n  GetTags(projectId: Int!): GetTagsResponse!\n  GetProfile: GetProfileResponse!\n  User: String!\n}\n\ntype GetMessageResponse {\n  ok: Boolean!\n  error: String\n  message: Message\n  msgCount: Int!\n  similarMsg: [Message]\n}\n\ntype GetMessagesResponse {\n  ok: Boolean!\n  error: String\n  messages: [Message]\n}\n\ntype GetSimilarMessagesResponse {\n  ok: Boolean!\n  error: String\n  msgCount: [Option]\n}\n\ntype Option {\n  count: Int!\n  date: String!\n}\n\ntype SendMessageResponse {\n  ok: Boolean!\n  error: String\n}\n\ninput attachTags {\n  name: String!\n  color: String\n}\n\nenum levelOption {\n  NOTICE\n  WARNING\n  DEBUG\n  DANGER\n}\n\ntype Mutation {\n  SendMessage(level: levelOption!, contents: String!, location: String, apiKey: String!, tags: [attachTags]): SendMessageResponse!\n  CreateProject(projectName: String!, description: String, thumbnail: String): CreateProjectResponse!\n  CreateTag(projectId: Int!, name: String!, color: String): CreateTagResponse!\n  SignIn(userEmail: String!, userName: String!, profileImage: String): SignInResponse!\n}\n\ntype Subscription {\n  SendMessageSubscription: Message\n  CreateTagSubscription: Tag\n}\n\ntype Message {\n  id: Int!\n  level: String\n  contents: String!\n  location: String\n  project: Project\n  projectId: Int\n  tags: [Tag]\n  createdAt: String!\n}\n\ntype CreateProjectResponse {\n  ok: Boolean!\n  error: String\n  project: Project\n}\n\ntype GetProjectResponse {\n  ok: Boolean!\n  error: String\n  project: Project\n}\n\ntype GetProjectsResponse {\n  ok: Boolean!\n  error: String\n  projects: [Project]\n}\n\ntype Project {\n  id: Int!\n  name: String!\n  thumbnail: String\n  description: String\n  participants: [User]!\n  admin: User\n  messages: [Message]\n  tags: [Tag]\n  apiKey: String!\n  createdAt: String!\n  updatedAt: String\n}\n\ntype CreateTagResponse {\n  ok: Boolean!\n  error: String\n  tag: Tag\n}\n\ntype GetTagsResponse {\n  ok: Boolean!\n  error: String\n  tags: [Tag]\n}\n\ntype Tag {\n  id: Int!\n  name: String!\n  color: String\n  project: Project!\n  projectId: Int\n  createdAt: String!\n  updatedAt: String\n}\n\ntype GetProfileResponse {\n  ok: Boolean!\n  error: String\n  user: User\n}\n\ntype User {\n  id: Int!\n  userName: String!\n  userEmail: String!\n  profileImage: String\n  innerProjects: [Project]\n  manages: [Project]\n  createdAt: String!\n  updatedAt: String\n}\n\ntype SignInResponse {\n  ok: Boolean!\n  error: String\n  token: String\n}\n"];
 /* tslint:disable */
 
 export interface Query {
   GetFrequencyLevels: GetFrequencyLevelsResponse;
   GetMessage: GetMessageResponse;
   GetMessages: GetMessagesResponse;
+  GetSimilarMessages: GetSimilarMessagesResponse;
   GetProject: GetProjectResponse;
   GetProjects: GetProjectsResponse;
   GetTags: GetTagsResponse;
@@ -23,6 +24,11 @@ export interface GetMessageQueryArgs {
 
 export interface GetMessagesQueryArgs {
   projectId: number;
+}
+
+export interface GetSimilarMessagesQueryArgs {
+  projectId: number;
+  msgId: number;
 }
 
 export interface GetProjectQueryArgs {
@@ -105,6 +111,17 @@ export interface GetMessagesResponse {
   ok: boolean;
   error: string | null;
   messages: Array<Message> | null;
+}
+
+export interface GetSimilarMessagesResponse {
+  ok: boolean;
+  error: string | null;
+  msgCount: Array<Option> | null;
+}
+
+export interface Option {
+  count: number;
+  date: string;
 }
 
 export interface GetProjectResponse {
