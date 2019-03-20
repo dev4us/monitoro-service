@@ -46,7 +46,7 @@ const resolvers: Resolvers = {
               date("createdAt") as date
             FROM message
             WHERE 
-              "createdAt" >= ("createdAt" - interval '7' Day)
+              "createdAt" >= (NOW() - interval '7' Day)
             GROUP BY date("createdAt")
             ORDER BY date("createdAt") ASC;
             `
