@@ -76,19 +76,21 @@ const LevelGraph = () => {
     data.GetFrequencyLevels.frequencyLevels &&
     data.GetFrequencyLevels.frequencyLevels.length !== 0
   ) {
-    data.GetFrequencyLevels.frequencyLevels.map(
-      (object, key) =>
-        (data.GetFrequencyLevels.frequencyLevels[key].date = moment(
+    data.GetFrequencyLevels.frequencyLevels.map((object, key) => {
+      if (!object.date.includes("-")) {
+        data.GetFrequencyLevels.frequencyLevels[key].date = moment(
           Number(object.date)
-        ).format("YYYY-MM-DD"))
-    );
+        ).format("YYYY-MM-DD");
+      }
+      return true;
+    });
   }
 
   return (
     <Container>
       <Title>
         <DocumentIcon />
-        <span>Statistics</span>
+        <span>Statistics (on the last 7 days)</span>
       </Title>
       <Contents>
         <ChartResizer>
