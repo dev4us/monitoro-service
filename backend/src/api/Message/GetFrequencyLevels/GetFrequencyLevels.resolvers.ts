@@ -48,7 +48,7 @@ const resolvers: Resolvers = {
             WHERE 
               "createdAt" >= ("createdAt" - interval '7' Day)
             GROUP BY date("createdAt")
-            ORDER BY date("createdAt") DESC;
+            ORDER BY date("createdAt") ASC;
             `
           );
 
