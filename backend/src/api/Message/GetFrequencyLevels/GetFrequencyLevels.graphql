@@ -1,16 +1,17 @@
 type GetFrequencyLevelsResponse {
   ok: Boolean!
   error: String
-  frequency: LevelOption
+  frequencyLevels: [LevelOption]
 }
 
 type LevelOption {
-  notice: Int!
-  debug: Int!
-  warning: Int!
-  danger: Int!
+  notice: String!
+  debug: String!
+  warning: String!
+  danger: String!
+  date: String!
 }
 
-type query {
+type Query {
   GetFrequencyLevels(projectId: Int!): GetFrequencyLevelsResponse!
 }
