@@ -39,10 +39,10 @@ const resolvers: Resolvers = {
           const frequencyLevels = await getRepository(Message).query(
             `
             SELECT 
-              SUM(CASE WHEN level = 'Notice' THEN 1 ELSE 0 END) as notice,
-              SUM(CASE WHEN level = 'Debug' THEN 1 ELSE 0 END) as debug,
-              SUM(CASE WHEN level = 'Warning' THEN 1 ELSE 0 END) as warning,
-              SUM(CASE WHEN level = 'Danger' THEN 1 ELSE 0 END) as danger,
+              SUM(CASE WHEN level = 'NOTICE' THEN 1 ELSE 0 END) as notice,
+              SUM(CASE WHEN level = 'DEBUG' THEN 1 ELSE 0 END) as debug,
+              SUM(CASE WHEN level = 'WARNING' THEN 1 ELSE 0 END) as warning,
+              SUM(CASE WHEN level = 'DANGER' THEN 1 ELSE 0 END) as danger,
               date("createdAt") as date
             FROM message
             WHERE 

@@ -9,6 +9,7 @@ import { GET_PROJECT_QUERY } from "../../../queries";
 
 import Overview from "./Overview";
 import Detail from "./Detail";
+import LevelGraph from "./LevelGraph";
 
 const Container = styled.div`
   display: flex;
@@ -133,6 +134,8 @@ const TopFrame = styled.div`
   }
 `;
 
+const BottomFrame = styled.div``;
+
 const RightFrame = ({ selectedMsgId, menu, setMenu }) => {
   const { state } = useContext(Store);
 
@@ -186,6 +189,9 @@ const RightFrame = ({ selectedMsgId, menu, setMenu }) => {
           />
         )}
       </TopFrame>
+      <BottomFrame>
+        <LevelGraph>1</LevelGraph>
+      </BottomFrame>
     </Container>
   );
 };

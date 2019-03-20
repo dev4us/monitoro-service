@@ -130,6 +130,22 @@ export const GET_MESSAGES_LASTEST_QUERY = gql`
   }
 `;
 
+export const GET_FREQUENCY_LEVELS_QUERY = gql`
+  query getFrequencyLevels($projectId: Int!) {
+    GetFrequencyLevels(projectId: $projectId) {
+      ok
+      error
+      frequencyLevels {
+        notice
+        debug
+        warning
+        danger
+        date
+      }
+    }
+  }
+`;
+
 // Mutation
 export const SIGN_IN_GOOGLE = gql`
   mutation signInGoogle(
