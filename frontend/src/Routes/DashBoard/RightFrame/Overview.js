@@ -20,8 +20,7 @@ const TopRightFrame = styled.div`
   width: 60%;
   min-width: 310px;
   @media (max-width: 550px) {
-    min-width: unset;
-    padding-right: 30px;
+    width: 100%;
   }
 `;
 

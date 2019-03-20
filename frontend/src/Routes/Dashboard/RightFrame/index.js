@@ -131,10 +131,15 @@ const TopFrame = styled.div`
     min-width: unset;
     flex-direction: column;
     align-items: center;
+    display: flex;
   }
 `;
 
-const BottomFrame = styled.div``;
+const BottomFrame = styled.div`
+  @media (max-width: 550px) {
+    display: none;
+  }
+`;
 
 const RightFrame = ({ selectedMsgId, menu, setMenu }) => {
   const { state } = useContext(Store);
