@@ -1,10 +1,7 @@
-import { Resolvers } from "../../../../src/types/resolvers";
-import User from "../../../../src/entities/User";
-import {
-  SignInMutationArgs,
-  SignInResponse
-} from "../../../../src/types/graphql";
-import createJWT from "../../../../src/utils/createJWT";
+import { Resolvers } from "../../../types/resolvers";
+import User from "../../../entities/User";
+import { SignInMutationArgs, SignInResponse } from "../../../types/graphql";
+import createJWT from "../../../utils/createJWT";
 
 const resolvers: Resolvers = {
   Mutation: {

@@ -1,12 +1,12 @@
 import { getRepository } from "typeorm";
-import { Resolvers } from "../../../../src/types/resolvers";
-import privateResolver from "../../../../src/utils/privateResolvers";
+import { Resolvers } from "../../../types/resolvers";
+import privateResolver from "../../../utils/privateResolvers";
 
-import Project from "../../../../src/entities/Project";
+import Project from "../../../entities/Project";
 import {
   GetProjectQueryArgs,
   GetProjectResponse
-} from "../../../../src/types/graphql";
+} from "../../../types/graphql";
 
 const resolvers: Resolvers = {
   Query: {

@@ -1,7 +1,7 @@
 import { getRepository } from "typeorm";
 import { withFilter } from "graphql-yoga";
-import Project from "../../../../src/entities/Project";
-import User from "../../../../src/entities/User";
+import Project from "../../../entities/Project";
+import User from "../../../entities/User";
 
 const resolvers = {
   Subscription: {

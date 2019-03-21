@@ -1,13 +1,13 @@
-import { Resolvers } from "../../../../src/types/resolvers";
-import privateResolver from "../../../../src/utils/privateResolvers";
+import { Resolvers } from "../../../types/resolvers";
+import privateResolver from "../../../utils/privateResolvers";
 import {
   CreateTagMutationArgs,
   CreateTagResponse
-} from "../../../../src/types/graphql";
+} from "../../../types/graphql";
 import { getRepository } from "typeorm";
 
-import Project from "../../../../src/entities/Project";
-import Tag from "../../../../src/entities/Tag";
+import Project from "../../../entities/Project";
+import Tag from "../../../entities/Tag";
 
 const resolvers: Resolvers = {
   Mutation: {

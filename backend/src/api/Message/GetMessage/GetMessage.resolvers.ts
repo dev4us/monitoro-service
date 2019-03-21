@@ -1,10 +1,10 @@
-import { Resolvers } from "../../../../src/types/resolvers";
-import privateResolver from "../../../../src/utils/privateResolvers";
+import { Resolvers } from "../../../types/resolvers";
+import privateResolver from "../../../utils/privateResolvers";
 import {
   GetMessageQueryArgs,
   GetMessageResponse
-} from "../../../../src/types/graphql";
-import Message from "../../../../src/entities/Message";
+} from "../../../types/graphql";
+import Message from "../../../entities/Message";
 import { getRepository } from "typeorm";
 
 const resolvers: Resolvers = {

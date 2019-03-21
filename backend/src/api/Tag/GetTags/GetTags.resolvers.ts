@@ -1,12 +1,9 @@
-import { Resolvers } from "../../../../src/types/resolvers";
-import privateResolver from "../../../../src/utils/privateResolvers";
-import {
-  GetTagsQueryArgs,
-  GetTagsResponse
-} from "../../../../src/types/graphql";
+import { Resolvers } from "../../../types/resolvers";
+import privateResolver from "../../../utils/privateResolvers";
+import { GetTagsQueryArgs, GetTagsResponse } from "../../../types/graphql";
 import { getRepository } from "typeorm";
-import Project from "../../../../src/entities/Project";
-import Tag from "../../../../src/entities/Tag";
+import Project from "../../../entities/Project";
+import Tag from "../../../entities/Tag";
 
 const resolvers: Resolvers = {
   Query: {

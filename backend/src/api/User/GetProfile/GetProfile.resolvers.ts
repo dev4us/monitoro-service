@@ -1,7 +1,7 @@
-import { Resolvers } from "../../../../src/types/resolvers";
-import privateResolver from "../../../../src/utils/privateResolvers";
-import { GetProfileResponse } from "../../../../src/types/graphql";
-import User from "../../../../src/entities/User";
+import { Resolvers } from "../../../types/resolvers";
+import privateResolver from "../../../utils/privateResolvers";
+import { GetProfileResponse } from "../../../types/graphql";
+import User from "../../../entities/User";
 
 const resolvers: Resolvers = {
   Query: {

@@ -1,11 +1,11 @@
-import { Resolvers } from "../../../../src/types/resolvers";
+import { Resolvers } from "../../../types/resolvers";
 import privateResolvers from "../../../utils/privateResolvers";
 import {
   GetMessagesQueryArgs,
   GetMessagesResponse
-} from "../../../../src/types/graphql";
-import Project from "../../../../src/entities/Project";
-import Message from "../../../../src/entities/Message";
+} from "../../../types/graphql";
+import Project from "../../../entities/Project";
+import Message from "../../../entities/Message";
 import { getRepository } from "typeorm";
 
 const resolvers: Resolvers = {

@@ -1,12 +1,12 @@
 import { getRepository } from "typeorm";
-import { Resolvers } from "../../../../src/types/resolvers";
+import { Resolvers } from "../../../types/resolvers";
 import privateResolvers from "../../../utils/privateResolvers";
 import {
   CreateProjectResponse,
   CreateProjectMutationArgs
 } from "src/types/graphql";
-import Project from "../../../../src/entities/Project";
-import User from "../../../../src/entities/User";
+import Project from "../../../entities/Project";
+import User from "../../../entities/User";
 
 const resolvers: Resolvers = {
   Mutation: {

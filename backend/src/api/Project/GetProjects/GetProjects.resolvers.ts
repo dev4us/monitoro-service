@@ -1,7 +1,7 @@
-import { Resolvers } from "../../../../src/types/resolvers";
+import { Resolvers } from "../../../types/resolvers";
 import { getRepository } from "typeorm";
-import privateResolver from "../../../../src/utils/privateResolvers";
-import Project from "../../../../src/entities/Project";
+import privateResolver from "../../../utils/privateResolvers";
+import Project from "../../../entities/Project";
 
 const resolvers: Resolvers = {
   Query: {

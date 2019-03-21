@@ -1,11 +1,11 @@
-import { Resolvers } from "../../../../src/types/resolvers";
-import privateResolver from "../../../../src/utils/privateResolvers";
+import { Resolvers } from "../../../types/resolvers";
+import privateResolver from "../../../utils/privateResolvers";
 import {
   GetFrequencyLevelsResponse,
   GetFrequencyLevelsQueryArgs
-} from "../../../../src/types/graphql";
-import Message from "../../../../src/entities/Message";
-import Project from "../../../../src/entities/Project";
+} from "../../../types/graphql";
+import Message from "../../../entities/Message";
+import Project from "../../../entities/Project";
 
 import { getRepository } from "typeorm";
 

@@ -1,14 +1,14 @@
 import { getRepository } from "typeorm";
-import { Resolvers } from "../../../../src/types/resolvers";
+import { Resolvers } from "../../../types/resolvers";
 import cleanNullArgs from "../../../utils/cleanNullArgs";
 import {
   SendMessageMutationArgs,
   SendMessageResponse
-} from "../../../../src/types/graphql";
+} from "../../../types/graphql";
 
-import Project from "../../../../src/entities/Project";
-import Tag from "../../../../src/entities/Tag";
-import Message from "../../../../src/entities/Message";
+import Project from "../../../entities/Project";
+import Tag from "../../../entities/Tag";
+import Message from "../../../entities/Message";
 
 const resolvers: Resolvers = {
   Mutation: {
