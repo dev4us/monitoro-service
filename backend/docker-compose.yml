@@ -1,0 +1,31 @@
+version: "2.1"
+services:
+  monitoro_db:
+    image: "postgres:11"
+    container_name: "monitoro_db"
+    ports:
+      - "54320:5432"
+    volumes:
+      - ./postgresql:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8
+    healthcheck:
+      test: "pg_isready -h localhost -p 5432 -q -U postgres"
+      interval: 3s
+      timeout: 1s
+      retries: 10
+  monitoro_server:
+    build: .
+    container_name: "monitoro_server"
+    ports:
+      - "4000:4000"
+    environment:
+      - DB_ENDPOINT=monitoro_db
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=
+      - JWT_TOKEN=monitoro
+    depends_on:
+      monitoro_db:
+        condition: service_healthy
+    links:
+      - monitoro_db

@@ -1,26 +1,24 @@
 # node Version
-FROM node:10.14
+FROM node
 
-# Author
-MAINTAINER dev4us <public.dev4us@gmail.com>
+# 앱 디렉터리 생성
+WORKDIR /usr/app
 
-# make directory for app
-RUN mkdir -p /app
+# 앱 의존성 설치
+# 가능한 경우(npm@5+) package.json과 package-lock.json을 모두 복사하기 위해
+# 와일드카드를 사용
+COPY package*.json ./
 
-# Set WorkSpace to app directory
-WORKDIR /app
+RUN npm install
+# 프로덕션을 위한 코드를 빌드하는 경우
+# RUN npm ci --only=production
 
-# Move all file to app directory
-ADD . /app
+# 앱 소스 추가
+COPY . .
 
-# Install packages
-# RUN npm install
+# 빌드
+RUN npm run build
+WORKDIR ./dist
 
-# Set environment
-ENV NODE_ENV development
-
-# Set Port for virtual Environment
-# EXPOSE 3000 80
-
-# Set Command for Container
-CMD ["npm", "start"]
+EXPOSE 4000
+CMD node index.js
